@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://petfoodcal.com/sitemap.xml
+
+Sitemap: https://petfoodcal.vercel.app/sitemap.xml
