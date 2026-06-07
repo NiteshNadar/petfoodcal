@@ -1,0 +1,81 @@
+---
+// src/pages/about.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="About Us: 100% Neutral Dog & Cat Feeding Guides | petfoodcal" 
+  description="Learn about petfoodcal, a free and neutral pet food calculator designed to provide dog and cat owners with scientific, brand-unbiased feeding recommendations."
+  canonicalUrl="https://petfoodcal.com/about"
+>
+  <!-- Hero Banner -->
+  <section class="bg-canvas-soft border-b border-hairline" style="padding: 80px 24px 64px;">
+    <div class="max-w-[700px] mx-auto text-center">
+      <span class="font-mono text-[12px] uppercase tracking-wider text-link inline-block" style="margin-bottom: 12px;">Our Mission</span>
+      <h1 class="display-lg font-semibold tracking-tight text-ink" style="margin-bottom: 16px;">About petfoodcal</h1>
+      <p class="text-body leading-relaxed" style="font-size: 16px; max-width: 520px; margin: 0 auto;">
+        Providing dog and cat owners with a clear, unbiased, and completely free tool to calculate accurate daily portions for their pets.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="bg-canvas" style="padding: 64px 24px 80px;">
+    <div class="max-w-[700px] mx-auto text-[15px] leading-relaxed text-body" style="display: flex; flex-direction: column; gap: 48px;">
+      
+      <!-- Why We Built This -->
+      <div>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Discover Why We Built This Tool</h2>
+        <p style="margin-bottom: 16px;">
+          Finding reliable feeding guidelines for your dog or cat shouldn't be complicated. We created this tool to solve two main challenges:
+        </p>
+        <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+          <li><strong>Brand Bias:</strong> Most online calculators are owned by pet food companies. They often recommend larger portions to sell more food or lock you into expensive subscriptions.</li>
+          <li><strong>Over-Complication:</strong> Clinical calculators are designed for vets. They require complex inputs like body condition scores and precise calorie counts, which are confusing for average owners.</li>
+        </ul>
+        <p>
+          <strong>Our goal</strong> is simple: to bridge this gap by providing easy-to-use, brand-neutral, and accurate meal plans for every dog or cat owner.
+        </p>
+      </div>
+
+      <!-- Neutrality Promise -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Ensure 100% Neutrality: No Brand Bias</h2>
+        <p style="margin-bottom: 16px;">
+          We prioritize your pet's health above all else. Here is our promise to you:
+        </p>
+        <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+          <li><strong>No Product Selling:</strong> We do not sell any pet food or dietary supplements.</li>
+          <li><strong>No Affiliate Tracking:</strong> We do not host sponsored shopping links or push specific brands.</li>
+          <li><strong>No Email Collection:</strong> You can use all our features freely without sharing your personal information.</li>
+          <li><strong>Science-Backed Formulas:</strong> Our calculations are strictly based on peer-reviewed animal nutrition research.</li>
+        </ul>
+        <p>
+          Whether your pet eats raw meat, cooked recipes, dry kibble, wet food, or a mix of everything, we give you clean, mathematical recommendations tailored to your pet's exact details.
+        </p>
+      </div>
+
+      <!-- Scientific Formula Card -->
+      <div class="bg-canvas-soft-2 border border-hairline rounded-md shadow-subtle-level-1" style="padding: 24px; margin-top: -8px;">
+        <h2 class="font-mono uppercase tracking-wider text-ink" style="font-size: 12px; margin-bottom: 12px;">Review Our Scientific Formula Baseline</h2>
+        <p style="font-size: 14px; margin-bottom: 12px;">
+          Our calculator implements standard metabolic scaling formulas used by animal nutritionists:
+        </p>
+        <ul class="list-disc pl-5 font-mono text-body" style="font-size: 13px; display: flex; flex-direction: column; gap: 8px;">
+          <li>Puppies & Kittens: 5% to 10% daily intake based on developmental growth brackets</li>
+          <li>Adult Dogs: 2.5% daily intake for stable maintenance</li>
+          <li>Adult Cats: 3.0% daily intake for stable maintenance</li>
+          <li>Seniors: 2.0% daily intake to accommodate slower metabolic rates</li>
+          <li>Modifiers: Breed size (dogs only), activity levels, feeding goals, and neutering status</li>
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline); display: flex; justify-content: center;">
+        <a href="/" class="inline-flex items-center justify-center rounded-full bg-primary text-on-primary text-[14px] font-medium shadow-subtle-level-2 hover:bg-primary/90 active:scale-[0.97]" style="height: 44px; padding: 0 24px; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
+          Return to Calculator
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

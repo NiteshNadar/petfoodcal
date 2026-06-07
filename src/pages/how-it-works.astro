@@ -1,0 +1,182 @@
+---
+// src/pages/how-it-works.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="See How It Works: Dog & Cat Feeding Formula Science | petfoodcal" 
+  description="Explore the science, formulas, and modifiers behind our dog food calculator and cat food calculator models. Learn how raw diets, kcal density, and wet/dry splits are computed."
+  canonicalUrl="https://petfoodcal.com/how-it-works"
+>
+  <!-- Hero Banner -->
+  <section class="bg-canvas-soft border-b border-hairline" style="padding: 80px 24px 64px;">
+    <div class="max-w-[700px] mx-auto text-center">
+      <span class="font-mono text-[12px] uppercase tracking-wider text-link inline-block" style="margin-bottom: 12px;">Calculation Logic</span>
+      <h1 class="display-lg font-semibold tracking-tight text-ink" style="margin-bottom: 16px;">See How It Works</h1>
+      <p class="text-body leading-relaxed" style="font-size: 16px; max-width: 520px; margin: 0 auto;">
+        Learn the mathematical models and veterinary nutrition baselines we use to determine your dog or cat's daily feeding portions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="bg-canvas" style="padding: 64px 24px 80px;">
+    <div class="max-w-[700px] mx-auto text-[15px] leading-relaxed text-body" style="display: flex; flex-direction: column; gap: 48px;">
+      
+      <!-- General Process -->
+      <div>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Follow Our Calculation Process</h2>
+        <p style="margin-bottom: 16px;">
+          Standard pet food packaging provides broad guidelines that often lead to overfeeding. Our calculator generates a customized portion plan by running your inputs through four core steps:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 16px; margin-bottom: 16px;">
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <span class="font-mono text-[12px] text-link font-bold uppercase">Step 1</span>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Scale by Ideal Weight</h4>
+            <p style="font-size: 13px; line-height: 1.5;">We convert the pet's target weight into kilograms to align with scientific nutritional scaling models.</p>
+          </div>
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <span class="font-mono text-[12px] text-link font-bold uppercase">Step 2</span>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Establish Life Stage Base</h4>
+            <p style="font-size: 13px; line-height: 1.5;">We select a baseline feeding percentage (from 2.0% to 10.0% of body weight) based on age and developmental stage.</p>
+          </div>
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <span class="font-mono text-[12px] text-link font-bold uppercase">Step 3</span>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Apply Physiological Modifiers</h4>
+            <p style="font-size: 13px; line-height: 1.5;">We adjust the portion size using mathematical multipliers for activity levels, neuter status, and body conditions.</p>
+          </div>
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <span class="font-mono text-[12px] text-link font-bold uppercase">Step 4</span>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Customize by Food Type</h4>
+            <p style="font-size: 13px; line-height: 1.5;">We split the final weight in grams, estimate measuring cup volume, and calculate raw or mixed diet allocations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Adjust by Life Stage -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Adjust Feeding by Life Stage</h2>
+        <p style="margin-bottom: 16px;">
+          Pet nutritional requirements change significantly as they grow, mature, and age. Our calculator applies distinct percentages of body weight for dogs and cats in each developmental window:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="margin-bottom: 16px;">
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Canine (Dog) Baselines</h3>
+            <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+              <li>
+                <strong>Puppies (Growth Phase):</strong>
+                <ul class="list-circle pl-5" style="margin-top: 4px; display: flex; flex-direction: column; gap: 2px;">
+                  <li><em>Under 4 months:</em> 9.0% of current weight daily</li>
+                  <li><em>4 to 6 months:</em> 7.0% of current weight daily</li>
+                  <li><em>6 to 12 months:</em> 5.0% of current weight daily</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Adult Dogs (Maintenance):</strong> Baseline of <strong>2.5% of body weight</strong> daily.
+              </li>
+              <li>
+                <strong>Senior Dogs (Metabolic Decline):</strong> Baseline of <strong>2.0% of body weight</strong> daily.
+              </li>
+            </ul>
+          </div>
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Feline (Cat) Baselines</h3>
+            <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+              <li>
+                <strong>Kittens (Growth Phase):</strong>
+                <ul class="list-circle pl-5" style="margin-top: 4px; display: flex; flex-direction: column; gap: 2px;">
+                  <li><em>Under 4 months:</em> 10.0% of current weight daily</li>
+                  <li><em>4 to 6 months:</em> 8.0% of current weight daily</li>
+                  <li><em>6 to 12 months:</em> 6.0% of current weight daily</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Adult Cats (Maintenance):</strong> Baseline of <strong>3.0% of body weight</strong> daily.
+              </li>
+              <li>
+                <strong>Senior Cats (Metabolic Decline):</strong> Baseline of <strong>2.0% of body weight</strong> daily.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evaluate Activity Impacts -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Evaluate Activity Level Impacts</h2>
+        <p style="margin-bottom: 16px;">
+          Daily exercise affects metabolic energy expenditure. We scale the portion calculation using the following activity modifiers:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="margin-bottom: 16px;">
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Canine (Dog) Modifiers</h3>
+            <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+              <li><strong>Low Activity (0.90x):</strong> For indoor dogs getting under 30 minutes of daily exercise.</li>
+              <li><strong>Normal Activity (1.00x):</strong> For active family pets receiving 1 to 2 hours of daily exercise.</li>
+              <li><strong>High Activity (1.15x):</strong> For working dogs, sporting breeds, or high intensity runners.</li>
+            </ul>
+          </div>
+          <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Feline (Cat) Modifiers</h3>
+            <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+              <li><strong>Low Activity (0.85x):</strong> Specifically for spayed/neutered indoor cats with low energy levels.</li>
+              <li><strong>Normal Activity (1.00x):</strong> For active cats engaging in indoor play and exploring.</li>
+              <li><strong>High Activity (1.15x):</strong> For working farm cats or high energy feline breeds.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master 80/10/10 Ratio -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Master the 80/10/10 Ratio</h2>
+        <p style="margin-bottom: 16px;">
+          When preparing a homemade raw feeding plan (BARF for dogs or PMR for cats), maintaining nutritional balance is critical. Our calculator breaks down raw portions according to standard veterinary-approved guidelines:
+        </p>
+        <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 8px;">
+          <li><strong>80% Muscle Meat:</strong> Supplies primary protein, fat, amino acids, and taurine (vital for obligate feline carnivores).</li>
+          <li><strong>10% Raw Bone:</strong> Supplies essential digestible calcium, phosphorus, and trace minerals.</li>
+          <li><strong>5% Liver:</strong> Functions as the primary natural multivitamin, supplying Vitamin A, copper, and iron.</li>
+          <li><strong>5% Secreting Organs:</strong> Includes kidneys, spleen, or pancreas, supplying vital trace minerals and enzymes.</li>
+        </ul>
+      </div>
+
+      <!-- Combine Wet and Dry Food -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Combine Wet and Dry Food</h2>
+        <p style="margin-bottom: 16px;">
+          Mixing dry kibble and wet food is popular for hydration and taste. Because wet food contains about 75% water weight, it is less calorie-dense than dry food. To provide a balanced caloric split, our calculator runs custom equations:
+        </p>
+        <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+          <li><strong>Dog Mixed Split:</strong> Daily dry portion is calculated using 110g/cup density; wet portion uses standard 150g (5.3 oz) dog pouch sizes.</li>
+          <li><strong>Cat Mixed Split:</strong> Daily dry portion is calculated using 90g/cup density (cat dry food is less dense); wet portion uses standard 85g (3 oz) cat pouch sizes.</li>
+        </ul>
+        <p>
+          We recommend feeding the dry portion in the morning and the wet portion in the evening to maintain clean digestion habits.
+        </p>
+      </div>
+
+      <!-- Track Food Supply -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Track Your Pet Food Supply</h2>
+        <p style="margin-bottom: 16px;">
+          Knowing daily portion sizes allows you to budget and plan your next food purchase. Our secondary calculator estimates bag lifespan using this formula:
+        </p>
+        <div class="bg-canvas-soft-2 border border-hairline rounded-md shadow-subtle-level-1 font-mono text-[13px] text-body" style="padding: 16px; margin-bottom: 16px;">
+          <p class="font-semibold text-ink" style="margin-bottom: 8px;">Lifespan Calculation Equation:</p>
+          <p>Bag Size in Grams / Daily Intake in Grams = Total Feeding Days</p>
+        </div>
+        <p>
+          Based on the total feeding days, our calculator maps out the exact calendar date you will need to open your next bag, helping you avoid last minute trips to the store.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline); display: flex; justify-content: center;">
+        <a href="/" class="inline-flex items-center justify-center rounded-full bg-primary text-on-primary text-[14px] font-medium shadow-subtle-level-2 hover:bg-primary/90 active:scale-[0.97]" style="height: 44px; padding: 0 24px; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
+          Return to Calculator
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

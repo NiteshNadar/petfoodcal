@@ -1,0 +1,180 @@
+---
+// src/pages/faq.astro
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "How much wet food to feed a dog calculator",
+    answer: "The amount of wet food depends on your dog's weight, life stage, and activity level. Wet food is roughly 75% moisture, so dogs typically need 2 to 3 times the weight in wet food compared to dry kibble. Use our calculator above: select \"Wet / Canned Food\" as food type, enter your dog's weight, and get the exact daily grams and meal splits."
+  },
+  {
+    question: "How long will my dog food last calculator",
+    answer: "Our bag duration calculator estimates how many days a bag of food will last. After calculating your dog's daily portion, enter your bag size (in pounds or kilograms) in the secondary calculator. It divides the total bag weight by daily intake and tells you the exact date you will need to purchase your next bag."
+  },
+  {
+    question: "How much wet food should I feed my dog calculator",
+    answer: "For wet food diets, adult dogs generally need 2.5% of their ideal body weight daily, adjusted for activity and neuter status. Because wet food has high moisture content, the gram amount is larger than kibble. Select \"Wet / Canned Food\" in our calculator, enter your dog's weight, and receive customized daily grams split across meals."
+  },
+  {
+    question: "How much wet food to feed a dog calculator by age",
+    answer: "Age significantly impacts portion sizes. Puppies under 4 months need up to 9% of their body weight daily, while adults need 2.5% and seniors need 2.0%. Our calculator accounts for life stage automatically. Select the correct age bracket (Puppy, Adult, or Senior) and the portions adjust accordingly for wet food diets."
+  },
+  {
+    question: "How much food should I feed my dog calculator",
+    answer: "The right amount depends on your dog's weight, age, breed size, activity level, body condition, and whether they are spayed or neutered. Our calculator factors in all of these variables and outputs an exact daily portion in grams, ounces, and cups. It works for raw, kibble, wet, homemade, and mixed diets."
+  },
+  {
+    question: "How much dry food to feed a cat calculator",
+    answer: "Adult cats typically need about 3.0% of their ideal body weight in food daily. Select \"Cat\" in our pet switcher, choose \"Dry Kibble\" as the food type, and enter your cat's weight. The calculator uses a feline-specific density of 90g per cup (lower than dog kibble) to provide accurate cup and gram measurements."
+  },
+  {
+    question: "How much raw food to feed cat calculator",
+    answer: "For raw-fed cats, adult felines typically require 2% to 4% of their ideal body weight daily. Cats are obligate carnivores and thrive on raw diets rich in taurine and animal protein. Switch to \"Cat\" mode, select \"Raw (Complete)\" or \"Raw (80/10/10: DIY)\", and enter your cat's weight to get the precise daily portion."
+  },
+  {
+    question: "How much wet food to feed a cat calculator",
+    answer: "Wet cat food portions are calculated using standard 85g (3 oz) pouch sizes. Our calculator splits the daily amount into pouches so you know exactly how many to open per day. Select \"Cat\", choose \"Wet / Canned Food\", enter the weight, and receive precise gram-level portions with meal splits."
+  },
+  {
+    question: "How much dog food calculator",
+    answer: "Our dog food calculator determines the exact daily amount in grams, ounces, and cups for any diet type. Enter your dog's weight, select the food type (raw, kibble, wet, homemade, or mixed), specify the life stage and activity level, and the tool generates a complete daily feeding plan with per-meal breakdowns."
+  },
+  {
+    question: "How much raw food to feed dog calculator",
+    answer: "Raw-fed dogs generally need 2% to 3% of their ideal body weight per day for adults, and up to 9% for growing puppies. Select \"Raw (Complete)\" for pre-made raw or \"Raw (80/10/10: DIY)\" for homemade prey model raw. The calculator provides the total daily grams and breaks down the 80/10/10 ratio into muscle meat, bone, liver, and organ weights."
+  }
+];
+
+// Generate JSON-LD Schema for SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<Layout 
+  title="FAQ: Dog & Cat Food Calculator Questions | petfoodcal" 
+  description="Find answers to common queries about our dog food calculator and cat food calculator models. Learn about raw dog food calculator ratios, spay/neuter factors, and dry/wet food splits."
+  canonicalUrl="https://petfoodcal.com/faq"
+>
+  <!-- Main FAQ Section -->
+  <section class="bg-canvas-soft border-t border-hairline relative z-20" style="padding: 80px 24px 96px; min-height: 100vh;">
+    <div class="max-w-[800px] mx-auto">
+      <div class="text-center" style="margin-bottom: 40px;">
+        <span class="font-mono text-[12px] uppercase tracking-wider text-body inline-block" style="margin-bottom: 12px;">Common Feeding Questions</span>
+        <h1 class="display-sm font-semibold text-ink" style="font-size: 28px; letter-spacing: -1px;">
+          Frequently Asked Questions About Pet Food Portions
+        </h1>
+      </div>
+
+      <div id="home-faq-list" style="display: flex; flex-direction: column; gap: 12px;">
+        {faqs.map((faq, index) => {
+          const uniqueId = `faq-${index}`;
+          return (
+            <div class="home-faq-item bg-canvas border border-hairline rounded-md overflow-hidden shadow-subtle-level-1">
+              <button
+                type="button"
+                class="home-faq-btn w-full text-left flex items-center justify-between font-sans font-medium text-ink cursor-pointer select-none focus:outline-none focus-visible:bg-canvas-soft focus-visible:ring-2 focus-visible:ring-primary/20"
+                style="padding: 16px 20px; font-size: 14px; line-height: 1.5; transition: background-color 0.15s ease-out;"
+                aria-expanded="false"
+                aria-controls={`faq-answer-${uniqueId}`}
+                id={`faq-btn-${uniqueId}`}
+              >
+                <span style="padding-right: 16px;">{faq.question}</span>
+                <svg class="home-faq-chevron w-4 h-4 text-mute flex-shrink-0" style="transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div
+                id={`faq-answer-${uniqueId}`}
+                class="home-faq-answer"
+                style="display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease-out;"
+                aria-labelledby={`faq-btn-${uniqueId}`}
+                role="region"
+              >
+                <div class="overflow-hidden">
+                  <div class="text-body" style="padding: 4px 20px 20px; font-size: 14px; line-height: 1.7; border-top: 1px solid rgba(235, 235, 235, 0.5);">
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Inject FAQ JSON-LD Structured Data Schema in Head -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+  <!-- Client-Side FAQ Accordion Script -->
+  <script is:inline>
+    const initFaq = () => {
+      const faqButtons = document.querySelectorAll('.home-faq-btn');
+      
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+        });
+
+        // Hover feedback
+        button.addEventListener('mouseenter', () => {
+          if (button.getAttribute('aria-expanded') !== 'true') {
+            button.style.backgroundColor = 'var(--color-canvas-soft)';
+          }
+        });
+        button.addEventListener('mouseleave', () => {
+          button.style.backgroundColor = '';
+        });
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFaq);
+    } else {
+      initFaq();
+    }
+  </script>
+
+  <style>
+    /* FAQ Accordion Animation */
+    button[aria-expanded="true"] + .home-faq-answer {
+      grid-template-rows: 1fr !important;
+      opacity: 1 !important;
+    }
+    button[aria-expanded="true"] .home-faq-chevron {
+      transform: rotate(180deg);
+    }
+    button[aria-expanded="true"] {
+      background-color: var(--color-canvas-soft);
+    }
+
+    /* FAQ item hover lift */
+    .home-faq-item {
+      transition: box-shadow 0.2s ease-out;
+    }
+    .home-faq-item:hover {
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08) inset, 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .home-faq-answer {
+        transition: none !important;
+      }
+      .home-faq-chevron {
+        transition: none !important;
+      }
+    }
+  </style>
+</Layout>

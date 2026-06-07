@@ -1,0 +1,939 @@
+---
+// Calculator.astro
+// Clean, interactive, client-side calculator component built to mimic Vercel's design language.
+---
+
+<div id="calculator" class="w-full max-w-[800px] mx-auto bg-canvas border border-hairline rounded-lg shadow-subtle-level-3" style="padding: 32px;">
+  <!-- Interactive Form -->
+  <form id="pet-calc-form" onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 40px;">
+    
+    <!-- Step 0: Pet Type Selection -->
+    <div>
+      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Are you feeding a dog or a cat?</h2>
+      <div class="flex rounded-sm border border-hairline bg-canvas-soft-2 text-xs overflow-hidden select-none" style="width: 192px; padding: 2px;">
+        <label class="relative isolate cursor-pointer flex-1 flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 8px 0; transition: color 0.15s ease-out;">
+          <input type="radio" name="pet_type" value="dog" class="sr-only peer" checked />
+          <span class="peer-checked:text-on-primary font-semibold relative z-10">Dog</span>
+          <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+        </label>
+        <label class="relative isolate cursor-pointer flex-1 flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 8px 0; transition: color 0.15s ease-out;">
+          <input type="radio" name="pet_type" value="cat" class="sr-only peer" />
+          <span class="peer-checked:text-on-primary font-semibold relative z-10">Cat</span>
+          <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Step 1: Diet Selection -->
+    <div>
+      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Step 1: Choose food type</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3" style="gap: 12px;">
+        {[
+          { id: 'raw-complete', label: 'Raw (Complete)' },
+          { id: 'raw-80-10-10', label: 'Raw (80/10/10: DIY)' },
+          { id: 'dry-kibble', label: 'Dry Kibble' },
+          { id: 'wet-food', label: 'Wet / Canned Food' },
+          { id: 'homemade', label: 'Homemade Food' },
+          { id: 'mixed', label: 'Mixed (Dry + Wet)' },
+        ].map((diet) => (
+          <label class="calc-option relative isolate flex items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 12px; transition: background-color 0.15s ease-out;">
+            <input type="radio" name="food_type" value={diet.id} class="sr-only peer" />
+            <span class="text-[14px] font-medium text-body peer-checked:text-ink font-sans">
+              {diet.label}
+            </span>
+            <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Step 2: Pet Details -->
+    <div>
+      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Step 2: Your pet's details</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 24px;">
+        <!-- Pet Name -->
+        <div>
+          <label for="dog-name" class="block text-[13px] font-medium text-ink" style="margin-bottom: 8px;">Pet's name (optional)</label>
+          <input
+            type="text"
+            id="dog-name"
+            name="dog_name"
+            placeholder="e.g. Tyson or Cleo…"
+            autocomplete="off"
+            class="calc-input w-full border border-hairline rounded-sm bg-canvas text-ink text-[14px] placeholder-mute focus:outline-none focus:ring-2 focus:ring-primary"
+            style="height: 40px; padding: 0 12px;"
+          />
+        </div>
+
+        <!-- Weight -->
+        <div>
+          <label for="dog-weight" class="block text-[13px] font-medium text-ink" style="margin-bottom: 8px;">How much do they weigh?</label>
+          <div class="relative flex">
+            <input
+              type="number"
+              id="dog-weight"
+              name="dog_weight"
+              required
+              min="0.1"
+              step="0.1"
+              placeholder="e.g. 45"
+              class="calc-input w-full border border-hairline rounded-sm bg-canvas text-ink text-[14px] placeholder-mute focus:outline-none focus:ring-2 focus:ring-primary"
+              style="height: 40px; padding: 0 80px 0 12px;"
+            />
+            <div class="absolute flex rounded-xs border border-hairline bg-canvas-soft-2 text-xs overflow-hidden select-none" style="right: 6px; top: 6px; height: 28px; padding: 2px;">
+              <label class="relative isolate cursor-pointer flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 0 8px; transition: color 0.15s ease-out;">
+                <input type="radio" name="weight_unit" value="lb" class="sr-only peer" checked />
+                <span class="peer-checked:text-on-primary font-semibold relative z-10">LB</span>
+                <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+              <label class="relative isolate cursor-pointer flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 0 8px; transition: color 0.15s ease-out;">
+                <input type="radio" name="weight_unit" value="kg" class="sr-only peer" />
+                <span class="peer-checked:text-on-primary font-semibold relative z-10">KG</span>
+                <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Stage -->
+      <div style="margin-top: 24px;">
+        <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How old are they?</label>
+        <div class="grid grid-cols-3" style="gap: 12px;">
+          {[
+            { id: 'puppy', label: 'Puppy' },
+            { id: 'adult', label: 'Adult (1 to 7 years)' },
+            { id: 'senior', label: 'Senior (7+ years)' },
+          ].map((stage) => (
+            <label class="calc-option relative isolate flex items-center justify-center border border-hairline rounded-sm cursor-pointer select-none" style="padding: 10px; transition: background-color 0.15s ease-out;">
+              <input type="radio" name="life_stage" value={stage.id} class="sr-only peer" />
+              <span id={stage.id === 'puppy' ? 'life-stage-young-label' : undefined} class="text-[13px] font-medium text-body peer-checked:text-ink">{stage.label}</span>
+              <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <!-- Puppy/Kitten Age Bracket (Shown only if Puppy selected) -->
+      <div id="puppy-age-section" class="hidden" style="margin-top: 24px; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
+        <label id="puppy-age-label" class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How old is your puppy?</label>
+        <div class="grid grid-cols-3" style="gap: 12px;">
+          {[
+            { id: 'under-4m', label: 'Under 4 months' },
+            { id: '4-6m', label: '4 to 6 months' },
+            { id: '6-12m', label: '6 to 12 months' },
+          ].map((bracket) => (
+            <label class="calc-option relative isolate flex items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px; transition: background-color 0.15s ease-out;">
+              <input type="radio" name="puppy_age" value={bracket.id} class="sr-only peer" />
+              <span class="text-[13px] font-medium text-body peer-checked:text-ink leading-tight">{bracket.label}</span>
+              <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <!-- Breed Size (Dogs only, hidden for Cats) -->
+      <div id="breed-size-section" style="margin-top: 24px;">
+        <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How big is their breed? (Dogs only)</label>
+        <div class="grid grid-cols-2 sm:grid-cols-5" style="gap: 10px;">
+          {[
+            { id: 'toy', label: 'Toy', desc: '<10 lb' },
+            { id: 'small', label: 'Small', desc: '10-25 lb' },
+            { id: 'medium', label: 'Medium', desc: '25-55 lb' },
+            { id: 'large', label: 'Large', desc: '55-100 lb' },
+            { id: 'giant', label: 'Giant', desc: '100 lb+' },
+          ].map((size) => (
+            <label class="calc-option relative isolate flex flex-col items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px; transition: background-color 0.15s ease-out;">
+              <input type="radio" name="breed_size" value={size.id} class="sr-only peer" />
+              <span class="text-[13px] font-medium text-body peer-checked:text-ink">{size.label}</span>
+              <span class="text-[10px] text-mute" style="margin-top: 2px;">{size.desc}</span>
+              <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+            </label>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Health & Lifestyle -->
+    <div>
+      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Step 3: Health & activity</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 24px;">
+        <!-- Body Condition -->
+        <div>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How is their body shape? (Thickness)</label>
+          <div class="grid grid-cols-3" style="gap: 8px;">
+            {[
+              { id: 'underweight', label: 'Underweight', desc: 'Ribs visible' },
+              { id: 'ideal', label: 'Ideal Weight', desc: 'Healthy shape' },
+              { id: 'overweight', label: 'Overweight', desc: 'No visible waist' },
+            ].map((cond) => (
+              <label class="calc-option relative isolate flex flex-col items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px 8px; transition: background-color 0.15s ease-out;">
+                <input type="radio" name="body_condition" value={cond.id} class="sr-only peer" />
+                <span class="text-[12px] font-medium text-body peer-checked:text-ink leading-tight">{cond.label}</span>
+                <span class="text-[9px] text-mute whitespace-nowrap" style="margin-top: 2px;">{cond.desc}</span>
+                <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <!-- Activity Level -->
+        <div>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How active are they?</label>
+          <div class="grid grid-cols-3" style="gap: 8px;">
+            {[
+              { id: 'low', label: 'Low', desc: 'Mostly resting' },
+              { id: 'normal', label: 'Normal', desc: 'Daily walks & play' },
+              { id: 'high', label: 'High', desc: 'Working dog/cat' },
+            ].map((act) => (
+              <label class="calc-option relative isolate flex flex-col items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px 8px; transition: background-color 0.15s ease-out;">
+                <input type="radio" name="activity_level" value={act.id} class="sr-only peer" />
+                <span class="text-[12px] font-medium text-body peer-checked:text-ink leading-tight">{act.label}</span>
+                <span class="text-[9px] text-mute whitespace-nowrap" style="margin-top: 2px;">{act.desc}</span>
+                <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <!-- Feeding Goal -->
+        <div>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">What is your weight goal?</label>
+          <div class="grid grid-cols-3" style="gap: 8px;">
+            {[
+              { id: 'lose', label: 'Lose Weight' },
+              { id: 'maintain', label: 'Maintain Weight' },
+              { id: 'gain', label: 'Gain Weight' },
+            ].map((goal) => (
+              <label class="calc-option relative isolate flex items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px 8px; min-height: 44px; transition: background-color 0.15s ease-out;">
+                <input type="radio" name="feeding_goal" value={goal.id} class="sr-only peer" />
+                <span class="text-[12px] font-medium text-body peer-checked:text-ink leading-tight">{goal.label}</span>
+                <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <!-- Neutered Status -->
+        <div>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Has your pet been fixed? <span class="text-[11px] font-normal text-mute">(operated on so they cannot have babies)</span></label>
+          <div class="grid grid-cols-2" style="gap: 8px;">
+            {[
+              { id: 'yes', label: 'Yes' },
+              { id: 'no', label: 'No' },
+            ].map((neut) => (
+              <label class="calc-option relative isolate flex items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px 8px; min-height: 44px; transition: background-color 0.15s ease-out;">
+                <input type="radio" name="neutered_status" value={neut.id} class="sr-only peer" />
+                <span class="text-[12px] font-medium text-body peer-checked:text-ink leading-tight">{neut.label}</span>
+                <div class="absolute inset-0 border border-transparent rounded-sm peer-checked:border-primary peer-checked:bg-canvas-soft-2/50 -z-10 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Puppy/Kitten 6-12 Months Dynamic Meal Toggles (Only visible when appropriate) -->
+    <div id="puppy-meals-section" class="hidden" style="padding-top: 24px; border-top: 1px solid var(--color-hairline);">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between" style="gap: 16px;">
+        <div>
+          <label id="puppy-meals-label" class="block text-[13px] font-medium text-ink">How many meals do you want to feed per day?</label>
+          <span class="text-[11px] text-mute">We recommend either 2 or 3 meals for this transition stage.</span>
+        </div>
+        <div class="flex rounded-sm border border-hairline bg-canvas-soft-2 text-xs overflow-hidden select-none" style="width: 128px; padding: 2px;">
+          <label class="relative isolate cursor-pointer flex-1 flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 6px 0; transition: color 0.15s ease-out;">
+            <input type="radio" name="puppy_meals" value="2" class="sr-only peer" />
+            <span class="peer-checked:text-on-primary font-semibold relative z-10">2 Meals</span>
+            <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+          </label>
+          <label class="relative isolate cursor-pointer flex-1 flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 6px 0; transition: color 0.15s ease-out;">
+            <input type="radio" name="puppy_meals" value="3" class="sr-only peer" />
+            <span class="peer-checked:text-on-primary font-semibold relative z-10">3 Meals</span>
+            <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- CALCULATE CTA -->
+  <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-hairline); display: flex; justify-content: center;">
+    <button
+      type="button"
+      id="scroll-to-results"
+      class="calc-cta inline-flex items-center justify-center rounded-sm bg-primary text-on-primary text-[14px] font-medium shadow-subtle-level-2 cursor-pointer opacity-50 pointer-events-none cursor-not-allowed"
+      style="height: 48px; padding: 0 32px; transition: all 0.15s ease-out;"
+      disabled
+    >
+      Calculate Daily Portions
+    </button>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div id="results-container" class="hidden flex-col" style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--color-hairline); gap: 24px;">
+    <!-- Personalized Header -->
+    <div class="text-center sm:text-left">
+      <h2 id="result-title" class="font-sans font-semibold text-ink" style="font-size: 22px; letter-spacing: -0.8px;">
+        Recommended daily portion: feed your pet about 250 grams per day
+      </h2>
+      <p class="text-mute" style="font-size: 13px; margin-top: 6px;">Based on your pet's weight, life stage, body shape, and activity level.</p>
+    </div>
+
+    <!-- Main Output Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3" style="gap: 16px;">
+      <!-- Daily Total Card -->
+      <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-2 text-center flex flex-col justify-between" style="padding: 20px;">
+        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Total Daily Portion</h3>
+        <div style="margin: 16px 0;">
+          <div id="result-grams-main" class="font-semibold text-ink leading-none tracking-tight" style="font-size: 32px;">250g</div>
+          <div id="result-oz-main" class="text-body" style="font-size: 13px; margin-top: 6px;">8.8 ounces</div>
+        </div>
+        <div id="result-cups-main" class="text-mute" style="font-size: 12px;">~2.3 cups*</div>
+      </div>
+
+      <!-- Meals Per Day Card -->
+      <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-2 text-center flex flex-col justify-between" style="padding: 20px;">
+        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Meals Per Day</h3>
+        <div style="margin: 16px 0;">
+          <div id="result-meals-count" class="font-semibold text-ink leading-none tracking-tight" style="font-size: 32px;">2</div>
+          <div id="result-meals-note" class="text-body" style="font-size: 13px; margin-top: 6px;">Recommended schedule</div>
+        </div>
+        <div class="text-mute" style="font-size: 12px;">Equal spacing is ideal</div>
+      </div>
+
+      <!-- Splits Card -->
+      <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-2 text-center flex flex-col justify-between" style="padding: 20px;">
+        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Amount Per Meal</h3>
+        <div id="result-splits-block" class="text-left text-body" style="margin: 4px 0; display: flex; flex-direction: column; font-size: 13px;">
+          <!-- Meal breakdown lines go here dynamically -->
+        </div>
+        <div class="text-mute" style="font-size: 10px; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(235, 235, 235, 0.3);">*Cups are estimates based on standard dry density.</div>
+      </div>
+    </div>
+
+    <!-- 80/10/10 Specific Breakdown Card -->
+    <div id="raw-801010-breakdown" class="hidden bg-canvas border border-hairline rounded-md shadow-subtle-level-2" style="padding: 20px;">
+      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Daily 80/10/10 Raw Food Breakdown</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 text-center" style="gap: 12px;">
+        <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
+          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Muscle Meat (80%)</span>
+          <span id="raw-muscle" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">200g</span>
+        </div>
+        <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
+          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Raw Bone (10%)</span>
+          <span id="raw-bone" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">25g</span>
+        </div>
+        <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
+          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Liver (5%)</span>
+          <span id="raw-liver" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">12.5g</span>
+        </div>
+        <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
+          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Other Organ (5%)</span>
+          <span id="raw-other" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">12.5g</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mixed Feeding Split Breakdown Card -->
+    <div id="mixed-breakdown" class="hidden bg-canvas border border-hairline rounded-md shadow-subtle-level-2" style="padding: 20px;">
+      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Mixed Feeding Portions (50/50 Split)</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 16px;">
+        <div class="border border-hairline rounded-sm bg-canvas-soft flex items-center justify-between" style="padding: 16px;">
+          <div>
+            <span class="block text-[13px] font-medium text-ink">Dry Kibble (Morning)</span>
+            <span class="block text-mute" style="font-size: 11px;">Recommended dry food portion</span>
+          </div>
+          <div class="text-right">
+            <span id="mixed-dry-g" class="block font-bold text-ink" style="font-size: 18px;">100g</span>
+            <span id="mixed-dry-cups" class="block text-mute" style="font-size: 12px;">~0.9 cups</span>
+          </div>
+        </div>
+        <div class="border border-hairline rounded-sm bg-canvas-soft flex items-center justify-between" style="padding: 16px;">
+          <div>
+            <span class="block text-[13px] font-medium text-ink">Wet Food (Evening)</span>
+            <span class="block text-mute" style="font-size: 11px;">Based on standard 150g (5.3 oz) pouch size</span>
+          </div>
+          <div class="text-right">
+            <span id="mixed-wet-g" class="block font-bold text-ink" style="font-size: 18px;">150g</span>
+            <span id="mixed-wet-pouches" class="block text-mute" style="font-size: 12px;">~1.0 pouch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Puppy/Kitten Transition Notice -->
+    <div id="puppy-transition-card" class="hidden bg-warning-soft/40 border border-warning/30 rounded-md text-[13px] text-warning-deep flex items-start" style="padding: 16px; gap: 10px;">
+      <span class="leading-none select-none" style="font-size: 16px;">📌</span>
+      <div>
+        <strong class="font-semibold">Food Transition Notice:</strong> 
+        <span id="puppy-transition-text">When your pet is 1 year old, transition to adult portion sizes.</span>
+      </div>
+    </div>
+
+    <!-- Bag Duration Calculator (Secondary) -->
+    <div style="padding-top: 24px; border-top: 1px solid var(--color-hairline); display: flex; flex-direction: column; gap: 16px;">
+      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">How long will a food bag last?</h3>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center" style="gap: 16px;">
+        <!-- Bag Size Input -->
+        <div class="flex-grow max-w-sm">
+          <label for="bag-size" class="sr-only">How big is your food bag?</label>
+          <div class="relative flex">
+            <input
+              type="number"
+              id="bag-size"
+              placeholder="e.g. 15"
+              min="0.1"
+              step="0.1"
+              class="calc-input w-full border border-hairline rounded-sm bg-canvas text-ink text-[14px] placeholder-mute focus:outline-none focus:ring-2 focus:ring-primary"
+              style="height: 40px; padding: 0 80px 0 12px;"
+            />
+            <div class="absolute flex rounded-xs border border-hairline bg-canvas-soft-2 text-xs overflow-hidden select-none" style="right: 6px; top: 6px; height: 28px; padding: 2px;">
+              <label class="relative isolate cursor-pointer flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 0 8px; transition: color 0.15s ease-out;">
+                <input type="radio" name="bag_unit" value="lb" class="sr-only peer" checked />
+                <span class="peer-checked:text-on-primary font-semibold relative z-10">LB</span>
+                <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+              <label class="relative isolate cursor-pointer flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 0 8px; transition: color 0.15s ease-out;">
+                <input type="radio" name="bag_unit" value="kg" class="sr-only peer" />
+                <span class="peer-checked:text-on-primary font-semibold relative z-10">KG</span>
+                <div class="absolute inset-0 bg-transparent rounded-xs -z-10 peer-checked:bg-primary peer-checked:shadow-subtle-level-1 pointer-events-none" style="transition: all 0.15s ease-out;"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bag Output results -->
+      <div id="bag-results" class="hidden bg-canvas-soft-2 border border-hairline rounded-sm text-body leading-relaxed" style="padding: 16px; font-size: 13px;">
+        <p id="bag-last-text">This bag of food will last about <strong class="text-ink">0 days</strong>.</p>
+        <p id="bag-date-text">You will need to buy a new bag by: <strong class="text-ink">[Date]</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Calculator option hover states */
+  .calc-option:hover {
+    background-color: var(--color-canvas-soft);
+  }
+
+  /* Input focus transition */
+  .calc-input {
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+  }
+
+  /* CTA hover */
+  .calc-cta:hover {
+    opacity: 0.92;
+  }
+  .calc-cta:active {
+    transform: scale(0.98);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .calc-option,
+    .calc-input,
+    .calc-cta {
+      transition: none !important;
+    }
+  }
+
+  /* Responsive calculator padding */
+  @media (min-width: 768px) {
+    #calculator {
+      padding: 40px !important;
+    }
+  }
+</style>
+
+<script>
+  const init = () => {
+    const form = document.getElementById('pet-calc-form') as HTMLFormElement;
+    const resultsContainer = document.getElementById('results-container');
+    const scrollBtn = document.getElementById('scroll-to-results');
+
+    if (!form || !resultsContainer) return;
+
+    // Show/hide parts dynamically
+    const updateVisibility = () => {
+      const petType = (form.querySelector('input[name="pet_type"]:checked') as HTMLInputElement)?.value || 'dog';
+      const lifeStage = (form.querySelector('input[name="life_stage"]:checked') as HTMLInputElement)?.value;
+      const puppyAgeSec = document.getElementById('puppy-age-section');
+      const puppyMealsSec = document.getElementById('puppy-meals-section');
+      const breedSizeSec = document.getElementById('breed-size-section');
+
+      // Wording controls
+      const youngLabel = document.getElementById('life-stage-young-label');
+      const puppyAgeLabel = document.getElementById('puppy-age-label');
+      const puppyMealsLabel = document.getElementById('puppy-meals-label');
+
+      if (petType === 'cat') {
+        breedSizeSec?.classList.add('hidden');
+        if (youngLabel) youngLabel.textContent = 'Kitten';
+        if (puppyAgeLabel) puppyAgeLabel.textContent = 'How old is your kitten?';
+        if (puppyMealsLabel) puppyMealsLabel.textContent = 'How many meals do you want to feed per day?';
+      } else {
+        breedSizeSec?.classList.remove('hidden');
+        if (youngLabel) youngLabel.textContent = 'Puppy';
+        if (puppyAgeLabel) puppyAgeLabel.textContent = 'How old is your puppy?';
+        if (puppyMealsLabel) puppyMealsLabel.textContent = 'How many meals do you want to feed per day?';
+      }
+
+      if (lifeStage === 'puppy') {
+        puppyAgeSec?.classList.remove('hidden');
+        puppyMealsSec?.classList.remove('hidden');
+      } else {
+        puppyAgeSec?.classList.add('hidden');
+        puppyMealsSec?.classList.add('hidden');
+      }
+    };
+
+    // Calculations logic
+    const calculate = () => {
+      const formData = new FormData(form);
+      const petType = (formData.get('pet_type') as string || 'dog');
+      const foodType = formData.get('food_type') as string;
+      const dogName = (formData.get('dog_name') as string || (petType === 'cat' ? 'Your cat' : 'Your dog')).trim();
+      const weightRaw = parseFloat(formData.get('dog_weight') as string);
+      const weightUnit = formData.get('weight_unit') as string;
+      const lifeStage = formData.get('life_stage') as string;
+      const puppyAge = formData.get('puppy_age') as string;
+      const breedSize = formData.get('breed_size') as string;
+      const condition = formData.get('body_condition') as string;
+      const activity = formData.get('activity_level') as string;
+      const goal = formData.get('feeding_goal') as string;
+      const neutered = formData.get('neutered_status') as string;
+      const puppyMeals = parseInt(formData.get('puppy_meals') as string || '3');
+
+      // Validation
+      if (isNaN(weightRaw) || weightRaw <= 0) {
+        resultsContainer.classList.add('hidden');
+        resultsContainer.classList.remove('flex');
+        return;
+      }
+
+      resultsContainer.classList.remove('hidden');
+      resultsContainer.classList.add('flex');
+
+      // 1. Convert weight to KG
+      let weightKg = weightRaw;
+      if (weightUnit === 'lb') {
+        weightKg = weightRaw / 2.205;
+      }
+
+      // 2. Base Percentage by Life Stage
+      let basePercentage = 2.5; // default adult dog
+      if (petType === 'cat') {
+        basePercentage = 3.0; // default adult cat
+        if (lifeStage === 'puppy') {
+          if (puppyAge === 'under-4m') basePercentage = 10.0;
+          else if (puppyAge === '4-6m') basePercentage = 8.0;
+          else basePercentage = 6.0; // 6-12m
+        } else if (lifeStage === 'senior') {
+          basePercentage = 2.0;
+        }
+      } else {
+        if (lifeStage === 'puppy') {
+          if (puppyAge === 'under-4m') basePercentage = 9.0;
+          else if (puppyAge === '4-6m') basePercentage = 7.0;
+          else basePercentage = 5.0; // 6-12m
+        } else if (lifeStage === 'senior') {
+          basePercentage = 2.0;
+        }
+      }
+
+      // 3. Multipliers
+      // Breed Size (dogs only)
+      let breedMultiplier = 1.00;
+      if (petType === 'dog') {
+        if (breedSize === 'toy' || breedSize === 'small') breedMultiplier = 1.10;
+        else if (breedSize === 'large') breedMultiplier = 0.95;
+        else if (breedSize === 'giant') breedMultiplier = 0.90;
+      }
+
+      // Activity
+      let activityMultiplier = 1.00;
+      if (petType === 'cat') {
+        if (activity === 'low') activityMultiplier = 0.85;
+        else if (activity === 'high') activityMultiplier = 1.15;
+      } else {
+        if (activity === 'low') activityMultiplier = 0.90;
+        else if (activity === 'high') activityMultiplier = 1.15;
+      }
+
+      // Goal
+      let goalMultiplier = 1.00;
+      if (petType === 'cat') {
+        if (goal === 'lose') goalMultiplier = 0.80;
+        else if (goal === 'gain') goalMultiplier = 1.15;
+      } else {
+        if (goal === 'lose') goalMultiplier = 0.80;
+        else if (goal === 'gain') goalMultiplier = 1.20;
+      }
+
+      // Body Condition
+      let conditionMultiplier = 1.00;
+      if (petType === 'cat') {
+        if (condition === 'underweight') conditionMultiplier = 1.15;
+        else if (condition === 'overweight') conditionMultiplier = 0.80;
+      } else {
+        if (condition === 'underweight') conditionMultiplier = 1.10;
+        else if (condition === 'overweight') conditionMultiplier = 0.85;
+      }
+
+      // Neutered
+      let neuteredMultiplier = 1.00;
+      if (neutered === 'yes') {
+        neuteredMultiplier = petType === 'cat' ? 0.85 : 0.90;
+      }
+
+      // Calculate Daily Grams
+      const baseGrams = weightKg * (basePercentage / 100) * 1000;
+      let dailyGrams = baseGrams * breedMultiplier * activityMultiplier * goalMultiplier * conditionMultiplier * neuteredMultiplier;
+      dailyGrams = Math.round(dailyGrams / 5) * 5; // round to nearest 5g
+
+      const dailyOunces = (dailyGrams / 28.3495).toFixed(1);
+      
+      const kibbleDensity = petType === 'cat' ? 90 : 110;
+      const dailyCups = (dailyGrams / kibbleDensity).toFixed(1);
+
+      // Determine Meal Frequency
+      let mealsPerDay = 2;
+      let mealsNote = petType === 'cat' ? 'Recommended for adult cats' : 'Recommended for adult dogs';
+      if (lifeStage === 'puppy') {
+        const puppyAgeVal = (form.querySelector('input[name="puppy_age"]:checked') as HTMLInputElement)?.value;
+        if (puppyAgeVal === 'under-4m' || puppyAgeVal === '4-6m') {
+          mealsPerDay = 3;
+          mealsNote = petType === 'cat' ? 'Recommended for young kittens' : 'Recommended for young puppies';
+        } else {
+          mealsPerDay = puppyMeals;
+          mealsNote = petType === 'cat' ? 'Recommended for older kittens' : 'Recommended for older puppies';
+        }
+      } else if (lifeStage === 'senior') {
+        mealsPerDay = 2;
+        mealsNote = petType === 'cat' ? 'Recommended for senior cats' : 'Recommended for senior dogs';
+      }
+
+      // Update Header title
+      const titleEl = document.getElementById('result-title');
+      if (titleEl) {
+        titleEl.textContent = `Recommended daily portion: feed ${dogName} about ${dailyGrams} grams per day.`;
+      }
+
+      // Update Main Numbers
+      const gramsMainEl = document.getElementById('result-grams-main');
+      const ozMainEl = document.getElementById('result-oz-main');
+      const cupsMainEl = document.getElementById('result-cups-main');
+      if (gramsMainEl) gramsMainEl.textContent = `${dailyGrams}g`;
+      if (ozMainEl) {
+        if (weightUnit === 'kg') {
+          ozMainEl.textContent = `${(dailyGrams / 1000).toFixed(2)} kg`;
+        } else {
+          ozMainEl.textContent = `${dailyOunces} ounces`;
+        }
+      }
+      if (cupsMainEl) {
+        if (foodType === 'dry-kibble' || foodType === 'mixed') {
+          cupsMainEl.textContent = `~${dailyCups} cups*`;
+        } else {
+          cupsMainEl.textContent = `~${dailyCups} cups (approx)*`;
+        }
+      }
+
+      // Update Meals count
+      const mealsCountEl = document.getElementById('result-meals-count');
+      const mealsNoteEl = document.getElementById('result-meals-note');
+      if (mealsCountEl) mealsCountEl.textContent = `${mealsPerDay}`;
+      if (mealsNoteEl) mealsNoteEl.textContent = mealsNote;
+
+      // Update splits portion detail block
+      const splitsBlock = document.getElementById('result-splits-block');
+      if (splitsBlock) {
+        splitsBlock.innerHTML = '';
+        const perMealG = Math.round((dailyGrams / mealsPerDay) / 5) * 5;
+        const perMealOz = (perMealG / 28.3495).toFixed(1);
+        const perMealCups = (parseFloat(dailyCups) / mealsPerDay).toFixed(1);
+
+        const mealTypes = mealsPerDay === 3 
+          ? ['Morning', 'Midday', 'Evening'] 
+          : ['Morning', 'Evening'];
+
+        mealTypes.forEach(meal => {
+          const div = document.createElement('div');
+          div.className = 'flex items-center justify-between';
+          div.style.cssText = 'padding: 8px 0; border-bottom: 1px solid var(--color-hairline);';
+          
+          const cupsLabel = parseFloat(perMealCups) === 1 ? 'cup' : 'cups';
+          let detailText = '';
+          if (weightUnit === 'kg') {
+            const perMealKg = (perMealG / 1000).toFixed(2);
+            detailText = (foodType === 'dry-kibble' || foodType === 'mixed')
+              ? `${perMealKg} kg • ~${perMealCups} ${cupsLabel}`
+              : `${perMealKg} kg`;
+          } else {
+            detailText = (foodType === 'dry-kibble' || foodType === 'mixed')
+              ? `${perMealOz} ounces • ~${perMealCups} ${cupsLabel}`
+              : `${perMealOz} ounces`;
+          }
+
+          div.innerHTML = `
+            <span class="font-semibold text-ink text-[13px]">${meal}</span>
+            <div class="text-right">
+              <span class="font-semibold text-ink text-[13px]">${perMealG}g</span>
+              <span class="block text-mute text-[11px] font-normal" style="margin-top: 1px;">${detailText}</span>
+            </div>
+          `;
+          splitsBlock.appendChild(div);
+        });
+
+        // Remove border from last item
+        const lastDiv = splitsBlock.lastElementChild as HTMLElement;
+        if (lastDiv) {
+          lastDiv.style.borderBottom = 'none';
+          lastDiv.style.paddingBottom = '0';
+        }
+      }
+
+      // 80/10/10 Raw Breakdown display check
+      const raw801010Block = document.getElementById('raw-801010-breakdown');
+      if (foodType === 'raw-80-10-10') {
+        raw801010Block?.classList.remove('hidden');
+        const muscle = Math.round(dailyGrams * 0.80);
+        const bone = Math.round(dailyGrams * 0.10);
+        const liver = (dailyGrams * 0.05).toFixed(1);
+        const other = (dailyGrams * 0.05).toFixed(1);
+
+        const muscleEl = document.getElementById('raw-muscle');
+        const boneEl = document.getElementById('raw-bone');
+        const liverEl = document.getElementById('raw-liver');
+        const otherEl = document.getElementById('raw-other');
+
+        const rawTitleEl = raw801010Block?.querySelector('h4');
+        if (rawTitleEl) {
+          rawTitleEl.textContent = petType === 'cat' 
+            ? 'Daily PMR Raw Food Breakdown' 
+            : 'Daily 80/10/10 Raw Food Breakdown';
+        }
+
+        if (muscleEl) muscleEl.textContent = `${muscle}g`;
+        if (boneEl) boneEl.textContent = `${bone}g`;
+        if (liverEl) liverEl.textContent = `${liver}g`;
+        if (otherEl) otherEl.textContent = `${other}g`;
+      } else {
+        raw801010Block?.classList.add('hidden');
+      }
+
+      // Mixed Breakdown display check
+      const mixedBlock = document.getElementById('mixed-breakdown');
+      if (foodType === 'mixed') {
+        mixedBlock?.classList.remove('hidden');
+        const dryG = Math.round(dailyGrams * 0.40);
+        const wetG = Math.round(dailyGrams * 0.60);
+        const dryCupsVal = (dryG / kibbleDensity).toFixed(1);
+        
+        const pouchWeight = petType === 'cat' ? 85 : 150;
+        const wetPouchesVal = (wetG / pouchWeight).toFixed(1);
+
+        const dryGEl = document.getElementById('mixed-dry-g');
+        const dryCupsEl = document.getElementById('mixed-dry-cups');
+        const wetGEl = document.getElementById('mixed-wet-g');
+        const wetPouchesEl = document.getElementById('mixed-wet-pouches');
+
+        const wetDescEl = wetGEl?.parentElement?.querySelector('.text-mute');
+        if (wetDescEl) {
+          wetDescEl.textContent = petType === 'cat'
+            ? 'Based on standard 85g (3 oz) pouch'
+            : 'Based on standard 150g (5.3 oz) pouch';
+        }
+
+        if (dryGEl) dryGEl.textContent = `${dryG}g`;
+        if (dryCupsEl) dryCupsEl.textContent = `~${dryCupsVal} cups`;
+        if (wetGEl) wetGEl.textContent = `${wetG}g`;
+        if (wetPouchesEl) wetPouchesEl.textContent = `~${wetPouchesVal} pouch`;
+      } else {
+        mixedBlock?.classList.add('hidden');
+      }
+
+      // Transition Notice card
+      const transitionCard = document.getElementById('puppy-transition-card');
+      if (lifeStage === 'puppy' && puppyAge === '6-12m') {
+        transitionCard?.classList.remove('hidden');
+        
+        // calculate adult requirement
+        const adultBasePct = petType === 'cat' ? 3.0 : 2.5;
+        const adultBaseG = weightKg * (adultBasePct / 100) * 1000;
+        let adultDailyG = adultBaseG * breedMultiplier * activityMultiplier * goalMultiplier * conditionMultiplier * neuteredMultiplier;
+        adultDailyG = Math.round(adultDailyG / 5) * 5;
+
+        const transTextEl = document.getElementById('puppy-transition-text');
+        if (transTextEl) {
+          if (petType === 'cat') {
+            transTextEl.textContent = `When ${dogName} is 1 year old, switch to adult food: ~${adultDailyG}g/day (based on standard adult needs).`;
+          } else {
+            transTextEl.textContent = `When ${dogName} is 1 year old, switch to adult food: ~${adultDailyG}g/day (based on standard adult needs).`;
+          }
+        }
+      } else {
+        transitionCard?.classList.add('hidden');
+      }
+
+      calculateBagDuration(dailyGrams);
+    };
+
+    // Calculate Bag Duration
+    const calculateBagDuration = (dailyGrams: number) => {
+      const bagInput = document.getElementById('bag-size') as HTMLInputElement;
+      const bagUnit = (document.querySelector('input[name="bag_unit"]:checked') as HTMLInputElement)?.value || 'lb';
+      const bagResults = document.getElementById('bag-results');
+      const bagLastText = document.getElementById('bag-last-text');
+      const bagDateText = document.getElementById('bag-date-text');
+
+      if (!bagInput || !bagResults || !bagLastText || !bagDateText || !dailyGrams) return;
+
+      const bagVal = parseFloat(bagInput.value);
+      if (isNaN(bagVal) || bagVal <= 0) {
+        bagResults.classList.add('hidden');
+        return;
+      }
+
+      bagResults.classList.remove('hidden');
+
+      let bagGrams = bagVal * 1000; // default kg
+      if (bagUnit === 'lb') {
+        bagGrams = (bagVal / 2.205) * 1000;
+      }
+
+      const daysLasted = Math.floor(bagGrams / dailyGrams);
+      
+      const today = new Date();
+      today.setDate(today.getDate() + daysLasted);
+      const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = today.toLocaleDateString('en-US', options);
+
+      const displayUnit = bagUnit.toUpperCase();
+      bagLastText.innerHTML = `Your <strong class="text-ink">${bagVal} ${displayUnit}</strong> bag will last about <strong class="text-ink">${daysLasted} days</strong>.`;
+      bagDateText.innerHTML = `You will need to buy a new bag by: <strong class="text-ink">${formattedDate}</strong>`;
+    };
+
+    let hasCalculated = false;
+
+    // Validation logic
+    const validateForm = () => {
+      const weightInput = document.getElementById('dog-weight') as HTMLInputElement;
+      const scrollBtn = document.getElementById('scroll-to-results') as HTMLButtonElement;
+      if (!weightInput || !scrollBtn) return false;
+
+      // 1. Check weight
+      const weightVal = parseFloat(weightInput.value);
+      const isWeightValid = !isNaN(weightVal) && weightVal > 0;
+
+      // 2. Check required radio groups
+      const hasFoodType = form.querySelector('input[name="food_type"]:checked') !== null;
+      const hasLifeStage = form.querySelector('input[name="life_stage"]:checked') !== null;
+      const hasBodyCondition = form.querySelector('input[name="body_condition"]:checked') !== null;
+      const hasActivityLevel = form.querySelector('input[name="activity_level"]:checked') !== null;
+      const hasFeedingGoal = form.querySelector('input[name="feeding_goal"]:checked') !== null;
+      const hasNeuteredStatus = form.querySelector('input[name="neutered_status"]:checked') !== null;
+
+      // Pet Type check
+      const petTypeVal = (form.querySelector('input[name="pet_type"]:checked') as HTMLInputElement)?.value || 'dog';
+      const hasBreedSize = petTypeVal === 'cat' ? true : (form.querySelector('input[name="breed_size"]:checked') !== null);
+
+      let isPuppyValid = true;
+      if (hasLifeStage) {
+        const lifeStageVal = (form.querySelector('input[name="life_stage"]:checked') as HTMLInputElement).value;
+        if (lifeStageVal === 'puppy') {
+          const hasPuppyAge = form.querySelector('input[name="puppy_age"]:checked') !== null;
+          const hasPuppyMeals = form.querySelector('input[name="puppy_meals"]:checked') !== null;
+          isPuppyValid = hasPuppyAge && hasPuppyMeals;
+        }
+      }
+
+      const isValid = isWeightValid && 
+                      hasFoodType && 
+                      hasLifeStage && 
+                      hasBreedSize && 
+                      hasBodyCondition && 
+                      hasActivityLevel && 
+                      hasFeedingGoal && 
+                      hasNeuteredStatus && 
+                      isPuppyValid;
+
+      if (isValid) {
+        scrollBtn.removeAttribute('disabled');
+        scrollBtn.classList.remove('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+      } else {
+        scrollBtn.setAttribute('disabled', 'true');
+        scrollBtn.classList.add('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+      }
+      return isValid;
+    };
+
+    // Bind event listeners to ALL form controls for instant feedback
+    form.addEventListener('input', () => {
+      updateVisibility();
+      validateForm();
+      if (hasCalculated) {
+        calculate();
+      }
+    });
+
+    form.addEventListener('change', () => {
+      updateVisibility();
+      validateForm();
+      if (hasCalculated) {
+        calculate();
+      }
+    });
+
+    // Special listener for secondary bag duration inputs
+    const bagInput = document.getElementById('bag-size');
+    const bagUnitRadios = document.getElementsByName('bag_unit');
+    
+    if (bagInput) {
+      bagInput.addEventListener('input', () => {
+        const gramsText = document.getElementById('result-grams-main')?.textContent || '0g';
+        const currentDailyG = parseInt(gramsText.replace('g', ''));
+        if (currentDailyG > 0 && hasCalculated) {
+          calculateBagDuration(currentDailyG);
+        }
+      });
+    }
+
+    bagUnitRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        const gramsText = document.getElementById('result-grams-main')?.textContent || '0g';
+        const currentDailyG = parseInt(gramsText.replace('g', ''));
+        if (currentDailyG > 0 && hasCalculated) {
+          calculateBagDuration(currentDailyG);
+        }
+      });
+    });
+
+    // Scroll to results button functionality
+    if (scrollBtn) {
+      scrollBtn.addEventListener('click', () => {
+        if (!validateForm()) return;
+
+        hasCalculated = true;
+        calculate();
+        const resultsHeader = document.getElementById('result-title');
+        if (resultsHeader) {
+          resultsHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
+
+    // Initial setups
+    updateVisibility();
+    validateForm();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
