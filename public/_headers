@@ -1,3 +1,6 @@
-# Block indexing of the preview subdomains
+# Block indexing of the preview and main pages.dev subdomains
 https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
