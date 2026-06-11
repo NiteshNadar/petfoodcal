@@ -8,19 +8,19 @@ import Calculator from '../components/Calculator.astro';
   title="Pet Food Calculator — Free Dog Feeding Calculator by Weight & Age | petfoodcal"
   description="Free pet food calculator for raw, kibble, wet & homemade diets. Get daily grams, cups, meal splits & bag duration. Works for puppies, adults & seniors."
 >
-  <!-- Hero Section with atmospheric Vercel Mesh Gradient -->
+  <!-- Hero Section with atmospheric Vercel Mesh Gradient (Quieter static version) -->
   <section class="relative w-full overflow-hidden bg-canvas border-b border-hairline" style="padding-top: 96px; padding-bottom: 80px;">
-    <!-- Mesh Gradient Backdrop -->
-    <div class="absolute inset-0 opacity-25 select-none pointer-events-none z-0">
-      <div class="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tr from-gradient-develop-start to-gradient-develop-end blur-[140px] animate-mesh"></div>
-      <div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-gradient-preview-start to-gradient-preview-end blur-[140px] animate-mesh" style="animation-delay: -6s;"></div>
-      <div class="absolute bottom-[-10%] left-[20%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-gradient-ship-start to-gradient-ship-end blur-[140px] animate-mesh" style="animation-delay: -12s;"></div>
+    <!-- Mesh Gradient Backdrop (Static, ultra-low opacity) -->
+    <div class="absolute inset-0 opacity-[0.06] select-none pointer-events-none z-0">
+      <div class="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tr from-gradient-develop-start to-gradient-develop-end blur-[140px]"></div>
+      <div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-gradient-preview-start to-gradient-preview-end blur-[140px]"></div>
+      <div class="absolute bottom-[-10%] left-[20%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-gradient-ship-start to-gradient-ship-end blur-[140px]"></div>
     </div>
 
     <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-      <!-- Section Mono Eyebrow -->
-      <span class="hero-eyebrow inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-link-bg-soft text-link font-mono text-[12px] font-medium tracking-tight shadow-subtle-level-1" style="margin-bottom: 24px;">
-        <span class="w-1.5 h-1.5 rounded-full bg-link animate-pulse"></span>
+      <!-- Section Mono Eyebrow (Muted, quiet style) -->
+      <span class="hero-eyebrow inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-hairline bg-canvas-soft text-body font-mono text-[12px] font-medium tracking-tight" style="margin-bottom: 24px;">
+        <span class="w-1.5 h-1.5 rounded-full bg-hairline-strong"></span>
         Calculate Pet Nutrition Scientifically
       </span>
       
@@ -58,7 +58,7 @@ import Calculator from '../components/Calculator.astro';
       
       <!-- Section Header -->
       <div style="margin-bottom: 48px;">
-        <span class="font-mono text-[12px] uppercase tracking-wider text-link inline-block" style="margin-bottom: 16px;">Complete Feeding Resource</span>
+        <span class="font-mono text-[12px] uppercase tracking-wider text-mute inline-block" style="margin-bottom: 16px;">Complete Feeding Resource</span>
         <h2 class="display-lg font-semibold text-ink" style="font-size: 32px; letter-spacing: -1.28px; line-height: 40px; margin-bottom: 24px;">
           Scientific guide to pet nutrition: calculating perfect portions.
         </h2>
@@ -66,7 +66,7 @@ import Calculator from '../components/Calculator.astro';
         <!-- Intro Paragraph Container -->
         <div style="margin-bottom: 32px;">
           <div class="flex items-center justify-between" style="margin-bottom: 12px;">
-            <span class="font-mono uppercase tracking-wider text-link text-[12px] font-semibold">Overview // Science-Backed Portions</span>
+            <span class="font-mono uppercase tracking-wider text-mute text-[12px] font-semibold">Overview // Science-Backed Portions</span>
           </div>
           <p class="text-body max-w-[65ch]" style="font-size: 16px; line-height: 1.7; color: var(--color-body);">
             Feeding your dog or cat shouldn't be a guessing game. Standard pet food bags often give very broad weight guidelines. These broad guidelines can easily cause you to feed too much, leading to weight gain, or feed too little, causing health issues. By using a scientific portion calculator, you can find the exact amount of food your pet needs every day. This is calculated using your pet's target weight, age, exercise level, and whether they are spayed or neutered. This math-based approach helps your dog or cat stay at a healthy weight and avoid issues like obesity. Your pet's energy needs change as they grow, so fixed guidelines on food bags are rarely right for their whole life. Our tool does the math for you so your pet stays healthy.
@@ -154,8 +154,8 @@ import Calculator from '../components/Calculator.astro';
         <!-- Final CTA -->
         <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--color-hairline);">
           <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div class="flex items-center justify-between">
-              <span class="font-mono uppercase tracking-wider text-primary text-[12px] font-semibold">Summary // Optimize Nutrition</span>
+            <div class="flex items-center justify-between" style="margin-bottom: 4px;">
+              <span class="font-mono uppercase tracking-wider text-mute text-[12px] font-semibold">Summary // Optimize Nutrition</span>
             </div>
             <p class="text-body font-medium text-ink max-w-[65ch]" style="font-size: 15px; line-height: 1.7; margin: 0;">
               Whether your pet is an active dog, an indoor cat, or anything in between, we invite you to use our site for clean, math-based feeding guidelines. We make it simple to find your pet's ideal meal plan. Start using the calculator today to help your pet live a healthier life. We always recommend talking to your local vet to check your pet's portion sizes and keep track of their body weight.
@@ -172,7 +172,7 @@ import Calculator from '../components/Calculator.astro';
     <div class="max-w-[1200px] mx-auto">
       <!-- Section Header -->
       <div class="text-center" style="margin-bottom: 48px;">
-        <span class="font-mono text-[12px] uppercase tracking-wider text-link inline-block" style="margin-bottom: 16px;">Resources & Documentation</span>
+        <span class="font-mono text-[12px] uppercase tracking-wider text-mute inline-block" style="margin-bottom: 16px;">Resources & Documentation</span>
         <h2 class="display-lg font-semibold text-ink" style="font-size: 32px; letter-spacing: -1.28px; line-height: 40px; margin-bottom: 16px;">
           Learn More About Our Calculator
         </h2>
