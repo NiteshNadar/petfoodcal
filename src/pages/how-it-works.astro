@@ -11,10 +11,10 @@ import Layout from '../layouts/Layout.astro';
   <!-- Hero Banner -->
   <section class="bg-canvas-soft border-b border-hairline" style="padding: 80px 24px 64px;">
     <div class="max-w-[700px] mx-auto text-center">
-      <span class="font-mono text-[12px] uppercase tracking-wider text-link inline-block" style="margin-bottom: 12px;">Calculation Logic</span>
-      <h1 class="display-lg font-semibold tracking-tight text-ink" style="margin-bottom: 16px;">See How It Works</h1>
+      <span class="font-mono text-[12px] uppercase tracking-wider text-link inline-block" style="margin-bottom: 12px;">Behind the calculator</span>
+      <h1 class="display-lg font-semibold text-ink" style="margin-bottom: 16px;">How it works</h1>
       <p class="text-body leading-relaxed" style="font-size: 16px; max-width: 520px; margin: 0 auto;">
-        Learn the mathematical models and veterinary nutrition baselines we use to determine your dog or cat's daily feeding portions.
+        Learn how we turn your pet's answers into a daily feeding amount.
       </p>
     </div>
   </section>
@@ -25,43 +25,43 @@ import Layout from '../layouts/Layout.astro';
       
       <!-- General Process -->
       <div>
-        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Follow Our Calculation Process</h2>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">The simple process</h2>
         <p style="margin-bottom: 16px;">
-          Standard pet food packaging provides broad guidelines that often lead to overfeeding. Our calculator generates a customized portion plan by running your inputs through four core steps:
+          Pet food labels often give wide ranges. The calculator narrows that range by using your pet's details:
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 16px; margin-bottom: 16px;">
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
             <span class="font-mono text-[12px] text-link font-bold uppercase">Step 1</span>
-            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Scale by Ideal Weight</h4>
-            <p style="font-size: 13px; line-height: 1.5;">We convert the pet's target weight into kilograms to align with scientific nutritional scaling models.</p>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Start with weight</h4>
+            <p style="font-size: 13px; line-height: 1.5;">We convert the weight to kilograms so the feeding math is consistent.</p>
           </div>
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
             <span class="font-mono text-[12px] text-link font-bold uppercase">Step 2</span>
-            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Establish Life Stage Base</h4>
-            <p style="font-size: 13px; line-height: 1.5;">We select a baseline feeding percentage (from 2.0% to 10.0% of body weight) based on age and developmental stage.</p>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Use age range</h4>
+            <p style="font-size: 13px; line-height: 1.5;">Puppies and kittens usually need more food for growth. Seniors often need less.</p>
           </div>
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
             <span class="font-mono text-[12px] text-link font-bold uppercase">Step 3</span>
-            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Apply Physiological Modifiers</h4>
-            <p style="font-size: 13px; line-height: 1.5;">We adjust the portion size using mathematical multipliers for activity levels, neuter status, and body conditions.</p>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Adjust for lifestyle</h4>
+            <p style="font-size: 13px; line-height: 1.5;">Activity, body shape, and spay or neuter status can move the amount up or down.</p>
           </div>
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
             <span class="font-mono text-[12px] text-link font-bold uppercase">Step 4</span>
-            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Customize by Food Type</h4>
-            <p style="font-size: 13px; line-height: 1.5;">We split the final weight in grams, estimate measuring cup volume, and calculate raw or mixed diet allocations.</p>
+            <h4 class="font-semibold text-ink" style="margin-top: 4px; margin-bottom: 8px;">Show useful serving details</h4>
+            <p style="font-size: 13px; line-height: 1.5;">We show grams, estimated cups, meal splits, and special raw or mixed-food details.</p>
           </div>
         </div>
       </div>
 
       <!-- Adjust by Life Stage -->
       <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
-        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Adjust Feeding by Life Stage</h2>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Age changes the amount</h2>
         <p style="margin-bottom: 16px;">
-          Pet nutritional requirements change significantly as they grow, mature, and age. Our calculator applies distinct percentages of body weight for dogs and cats in each developmental window:
+          Young pets usually need more food for growth. Adult pets usually need a steady amount. Seniors may need a little less:
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="margin-bottom: 16px;">
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
-            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Canine (Dog) Baselines</h3>
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Dog starting ranges</h3>
             <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
               <li>
                 <strong>Puppies (Growth Phase):</strong>
@@ -80,7 +80,7 @@ import Layout from '../layouts/Layout.astro';
             </ul>
           </div>
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
-            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Feline (Cat) Baselines</h3>
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Cat starting ranges</h3>
             <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
               <li>
                 <strong>Kittens (Growth Phase):</strong>
@@ -103,13 +103,13 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Evaluate Activity Impacts -->
       <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
-        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Evaluate Activity Level Impacts</h2>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Activity changes the amount</h2>
         <p style="margin-bottom: 16px;">
-          Daily exercise affects metabolic energy expenditure. We scale the portion calculation using the following activity modifiers:
+          A pet that moves more usually needs more food. A mostly resting pet may need less:
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="margin-bottom: 16px;">
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
-            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Canine (Dog) Modifiers</h3>
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Dog activity choices</h3>
             <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
               <li><strong>Low Activity (0.90x):</strong> For indoor dogs getting under 30 minutes of daily exercise.</li>
               <li><strong>Normal Activity (1.00x):</strong> For active family pets receiving 1 to 2 hours of daily exercise.</li>
@@ -117,7 +117,7 @@ import Layout from '../layouts/Layout.astro';
             </ul>
           </div>
           <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 16px;">
-            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Feline (Cat) Modifiers</h3>
+            <h3 class="font-semibold text-ink" style="margin-bottom: 12px; font-size: 15px;">Cat activity choices</h3>
             <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
               <li><strong>Low Activity (0.85x):</strong> Specifically for spayed/neutered indoor cats with low energy levels.</li>
               <li><strong>Normal Activity (1.00x):</strong> For active cats engaging in indoor play and exploring.</li>
@@ -129,9 +129,9 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Master 80/10/10 Ratio -->
       <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
-        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Master the 80/10/10 Ratio</h2>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">DIY raw 80/10/10 split</h2>
         <p style="margin-bottom: 16px;">
-          When preparing a homemade raw feeding plan (BARF for dogs or PMR for cats), maintaining nutritional balance is critical. Our calculator breaks down raw portions according to standard veterinary-approved guidelines:
+          If you choose DIY raw food, the calculator can split the daily amount into common 80/10/10 parts:
         </p>
         <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 8px;">
           <li><strong>80% Muscle Meat:</strong> Supplies primary protein, fat, amino acids, and taurine (vital for obligate feline carnivores).</li>
@@ -143,24 +143,24 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Combine Wet and Dry Food -->
       <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
-        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Combine Wet and Dry Food</h2>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Mix dry and wet food</h2>
         <p style="margin-bottom: 16px;">
-          Mixing dry kibble and wet food is popular for hydration and taste. Because wet food contains about 75% water weight, it is less calorie-dense than dry food. To provide a balanced caloric split, our calculator runs custom equations:
+          Many pets eat both dry and wet food. The calculator shows a simple split so you can plan both parts of the day:
         </p>
         <ul class="list-disc pl-5" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
-          <li><strong>Dog Mixed Split:</strong> Daily dry portion is calculated using 110g/cup density; wet portion uses standard 150g (5.3 oz) dog pouch sizes.</li>
-          <li><strong>Cat Mixed Split:</strong> Daily dry portion is calculated using 90g/cup density (cat dry food is less dense); wet portion uses standard 85g (3 oz) cat pouch sizes.</li>
+          <li><strong>Dog mixed food:</strong> Dry food uses an estimated 110g per cup. Wet food uses a standard 150g pouch.</li>
+          <li><strong>Cat mixed food:</strong> Dry food uses an estimated 90g per cup. Wet food uses a standard 85g pouch.</li>
         </ul>
         <p>
-          We recommend feeding the dry portion in the morning and the wet portion in the evening to maintain clean digestion habits.
+          You can feed dry and wet at the same meal or split them across the day.
         </p>
       </div>
 
       <!-- Track Food Supply -->
       <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline);">
-        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Track Your Pet Food Supply</h2>
+        <h2 class="display-sm font-semibold text-ink" style="margin-bottom: 12px;">Estimate when food runs out</h2>
         <p style="margin-bottom: 16px;">
-          Knowing daily portion sizes allows you to budget and plan your next food purchase. Our secondary calculator estimates bag lifespan using this formula:
+          Once you know the daily amount, you can estimate how long a food bag may last:
         </p>
         <div class="bg-canvas-soft-2 border border-hairline rounded-md shadow-subtle-level-1 font-mono text-[13px] text-body" style="padding: 16px; margin-bottom: 16px;">
           <p class="font-semibold text-ink" style="margin-bottom: 8px;">Lifespan Calculation Equation:</p>
@@ -174,7 +174,7 @@ import Layout from '../layouts/Layout.astro';
       <!-- CTA -->
       <div style="padding-top: 32px; border-top: 1px solid var(--color-hairline); display: flex; justify-content: center;">
         <a href="/" class="inline-flex items-center justify-center rounded-full bg-primary text-on-primary text-[14px] font-medium shadow-subtle-level-2 hover:bg-primary/90 active:scale-[0.97]" style="height: 44px; padding: 0 24px; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
-          Return to Calculator
+          Use the calculator
         </a>
       </div>
     </div>

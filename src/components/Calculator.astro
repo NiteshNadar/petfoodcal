@@ -1,16 +1,27 @@
 ---
 // Calculator.astro
-// Clean, interactive, client-side calculator component built to mimic Vercel's design language.
+// Clear, interactive, client-side calculator for everyday pet owners.
 ---
 
-<div id="calculator" class="w-full max-w-[800px] mx-auto bg-canvas border border-hairline rounded-lg shadow-subtle-level-3" style="padding: 32px;">
+<div id="calculator" class="w-full max-w-[960px] mx-auto bg-canvas border border-hairline rounded-lg shadow-subtle-level-3" style="padding: 24px;">
+  <div class="calculator-intro" style="margin-bottom: 32px;">
+    <span class="font-mono uppercase tracking-wider text-link" style="font-size: 12px;">Free pet food calculator</span>
+    <h2 class="font-sans font-semibold text-ink" style="font-size: clamp(26px, 4vw, 36px); line-height: 1.15; margin-top: 10px; max-width: 700px;">
+      Find a simple daily feeding amount for your dog or cat.
+    </h2>
+    <p class="text-body" style="font-size: 16px; line-height: 1.7; margin-top: 12px; max-width: 680px;">
+      Enter your pet's weight, age, food type, and activity level. We will show a daily amount, how to split it into meals, and how long a food bag may last.
+    </p>
+  </div>
+
   <!-- Interactive Form -->
-  <form id="pet-calc-form" onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 40px;">
+  <form id="pet-calc-form" onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 32px;">
     
     <!-- Step 0: Pet Type Selection -->
-    <div>
-      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Are you feeding a dog or a cat?</h2>
-      <div class="flex rounded-sm border border-hairline bg-canvas-soft-2 text-xs overflow-hidden select-none" style="width: 192px; padding: 2px;">
+    <div class="calc-section">
+      <h3 class="calc-section-title">First, choose your pet</h3>
+      <p class="calc-section-help">This helps us use dog or cat feeding ranges.</p>
+      <div class="flex rounded-sm border border-hairline bg-canvas-soft-2 text-xs overflow-hidden select-none" style="width: min(100%, 240px); padding: 2px; margin-top: 14px;">
         <label class="relative isolate cursor-pointer flex-1 flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 8px 0; transition: color 0.15s ease-out;">
           <input type="radio" name="pet_type" value="dog" class="sr-only peer" checked />
           <span class="peer-checked:text-on-primary font-semibold relative z-10">Dog</span>
@@ -25,16 +36,17 @@
     </div>
 
     <!-- Step 1: Diet Selection -->
-    <div>
-      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Step 1: Choose food type</h2>
+    <div class="calc-section">
+      <h3 class="calc-section-title">What food do they eat?</h3>
+      <p class="calc-section-help">Choose the option closest to your normal feeding plan.</p>
       <div class="grid grid-cols-2 sm:grid-cols-3" style="gap: 12px;">
         {[
-          { id: 'raw-complete', label: 'Raw (Complete)' },
-          { id: 'raw-80-10-10', label: 'Raw (80/10/10: DIY)' },
-          { id: 'dry-kibble', label: 'Dry Kibble' },
-          { id: 'wet-food', label: 'Wet / Canned Food' },
-          { id: 'homemade', label: 'Homemade Food' },
-          { id: 'mixed', label: 'Mixed (Dry + Wet)' },
+          { id: 'raw-complete', label: 'Ready-made raw' },
+          { id: 'raw-80-10-10', label: 'DIY raw 80/10/10' },
+          { id: 'dry-kibble', label: 'Dry kibble' },
+          { id: 'wet-food', label: 'Wet or canned food' },
+          { id: 'homemade', label: 'Home-cooked food' },
+          { id: 'mixed', label: 'Dry and wet mix' },
         ].map((diet) => (
           <label class="calc-option relative isolate flex items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 12px; transition: background-color 0.15s ease-out;">
             <input type="radio" name="food_type" value={diet.id} class="sr-only peer" />
@@ -48,17 +60,18 @@
     </div>
 
     <!-- Step 2: Pet Details -->
-    <div>
-      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Step 2: Your pet's details</h2>
+    <div class="calc-section">
+      <h3 class="calc-section-title">Tell us about your pet</h3>
+      <p class="calc-section-help">Use their current weight unless your vet has given you a target weight.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 24px;">
         <!-- Pet Name -->
         <div>
-          <label for="dog-name" class="block text-[13px] font-medium text-ink" style="margin-bottom: 8px;">Pet's name (optional)</label>
+          <label for="dog-name" class="block text-[13px] font-medium text-ink" style="margin-bottom: 8px;">Pet name (optional)</label>
           <input
             type="text"
             id="dog-name"
             name="dog_name"
-            placeholder="e.g. Tyson or Cleo…"
+            placeholder="Example: Tyson or Cleo"
             autocomplete="off"
             class="calc-input w-full border border-hairline rounded-sm bg-canvas text-ink text-[14px] placeholder-mute focus:outline-none focus:ring-2 focus:ring-primary"
             style="height: 40px; padding: 0 12px;"
@@ -67,7 +80,7 @@
 
         <!-- Weight -->
         <div>
-          <label for="dog-weight" class="block text-[13px] font-medium text-ink" style="margin-bottom: 8px;">How much do they weigh?</label>
+          <label for="dog-weight" class="block text-[13px] font-medium text-ink" style="margin-bottom: 8px;">Pet weight</label>
           <div class="relative flex">
             <input
               type="number"
@@ -98,7 +111,7 @@
 
       <!-- Life Stage -->
       <div style="margin-top: 24px;">
-        <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How old are they?</label>
+        <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Life stage</label>
         <div class="grid grid-cols-3" style="gap: 12px;">
           {[
             { id: 'puppy', label: 'Puppy' },
@@ -116,7 +129,7 @@
 
       <!-- Puppy/Kitten Age Bracket (Shown only if Puppy selected) -->
       <div id="puppy-age-section" class="hidden" style="margin-top: 24px; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
-        <label id="puppy-age-label" class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How old is your puppy?</label>
+        <label id="puppy-age-label" class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Puppy age</label>
         <div class="grid grid-cols-3" style="gap: 12px;">
           {[
             { id: 'under-4m', label: 'Under 4 months' },
@@ -134,7 +147,8 @@
 
       <!-- Breed Size (Dogs only, hidden for Cats) -->
       <div id="breed-size-section" style="margin-top: 24px;">
-        <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How big is their breed? (Dogs only)</label>
+        <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Dog size</label>
+        <p class="text-mute" style="font-size: 12px; margin-bottom: 10px;">For mixed breeds, choose the closest adult size. This question is hidden for cats.</p>
         <div class="grid grid-cols-2 sm:grid-cols-5" style="gap: 10px;">
           {[
             { id: 'toy', label: 'Toy', desc: '<10 lb' },
@@ -155,17 +169,18 @@
     </div>
 
     <!-- Step 3: Health & Lifestyle -->
-    <div>
-      <h2 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Step 3: Health & activity</h2>
+    <div class="calc-section">
+      <h3 class="calc-section-title">Body shape and lifestyle</h3>
+      <p class="calc-section-help">These answers adjust the amount up or down. When unsure, pick the middle option.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 24px;">
         <!-- Body Condition -->
         <div>
-          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How is their body shape? (Thickness)</label>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Body shape</label>
           <div class="grid grid-cols-3" style="gap: 8px;">
             {[
-              { id: 'underweight', label: 'Underweight', desc: 'Ribs visible' },
-              { id: 'ideal', label: 'Ideal Weight', desc: 'Healthy shape' },
-              { id: 'overweight', label: 'Overweight', desc: 'No visible waist' },
+              { id: 'underweight', label: 'Too thin', desc: 'Ribs easy to see' },
+              { id: 'ideal', label: 'About right', desc: 'Clear waist' },
+              { id: 'overweight', label: 'Too heavy', desc: 'No clear waist' },
             ].map((cond) => (
               <label class="calc-option relative isolate flex flex-col items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px 8px; transition: background-color 0.15s ease-out;">
                 <input type="radio" name="body_condition" value={cond.id} class="sr-only peer" />
@@ -179,12 +194,12 @@
 
         <!-- Activity Level -->
         <div>
-          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">How active are they?</label>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Activity level</label>
           <div class="grid grid-cols-3" style="gap: 8px;">
             {[
               { id: 'low', label: 'Low', desc: 'Mostly resting' },
-              { id: 'normal', label: 'Normal', desc: 'Daily walks & play' },
-              { id: 'high', label: 'High', desc: 'Working dog/cat' },
+              { id: 'normal', label: 'Normal', desc: 'Walks or play' },
+              { id: 'high', label: 'High', desc: 'Very active' },
             ].map((act) => (
               <label class="calc-option relative isolate flex flex-col items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px 8px; transition: background-color 0.15s ease-out;">
                 <input type="radio" name="activity_level" value={act.id} class="sr-only peer" />
@@ -198,12 +213,12 @@
 
         <!-- Feeding Goal -->
         <div>
-          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">What is your weight goal?</label>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Weight goal</label>
           <div class="grid grid-cols-3" style="gap: 8px;">
             {[
-              { id: 'lose', label: 'Lose Weight' },
-              { id: 'maintain', label: 'Maintain Weight' },
-              { id: 'gain', label: 'Gain Weight' },
+              { id: 'lose', label: 'Lose weight' },
+              { id: 'maintain', label: 'Stay the same' },
+              { id: 'gain', label: 'Gain weight' },
             ].map((goal) => (
               <label class="calc-option relative isolate flex items-center justify-center border border-hairline rounded-sm cursor-pointer select-none text-center" style="padding: 10px 8px; min-height: 44px; transition: background-color 0.15s ease-out;">
                 <input type="radio" name="feeding_goal" value={goal.id} class="sr-only peer" />
@@ -216,7 +231,8 @@
 
         <!-- Neutered Status -->
         <div>
-          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Has your pet been fixed? <span class="text-[11px] font-normal text-mute">(operated on so they cannot have babies)</span></label>
+          <label class="block text-[13px] font-medium text-ink" style="margin-bottom: 10px;">Spayed or neutered?</label>
+          <p class="text-mute" style="font-size: 12px; margin-bottom: 10px;">Choose yes if your pet has had surgery so they cannot have babies.</p>
           <div class="grid grid-cols-2" style="gap: 8px;">
             {[
               { id: 'yes', label: 'Yes' },
@@ -237,8 +253,8 @@
     <div id="puppy-meals-section" class="hidden" style="padding-top: 24px; border-top: 1px solid var(--color-hairline);">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between" style="gap: 16px;">
         <div>
-          <label id="puppy-meals-label" class="block text-[13px] font-medium text-ink">How many meals do you want to feed per day?</label>
-          <span class="text-[11px] text-mute">We recommend either 2 or 3 meals for this transition stage.</span>
+          <label id="puppy-meals-label" class="block text-[13px] font-medium text-ink">Meals per day</label>
+          <span class="text-[11px] text-mute">For older puppies and kittens, 2 or 3 meals can work well.</span>
         </div>
         <div class="flex rounded-sm border border-hairline bg-canvas-soft-2 text-xs overflow-hidden select-none" style="width: 128px; padding: 2px;">
           <label class="relative isolate cursor-pointer flex-1 flex items-center justify-center rounded-xs font-medium text-body hover:text-ink font-sans" style="padding: 6px 0; transition: color 0.15s ease-out;">
@@ -265,7 +281,7 @@
       style="height: 48px; padding: 0 32px; transition: all 0.15s ease-out;"
       disabled
     >
-      Calculate Daily Portions
+      Show my feeding amount
     </button>
   </div>
 
@@ -273,19 +289,19 @@
   <div id="results-container" class="hidden flex-col" style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--color-hairline); gap: 24px;">
     <!-- Personalized Header -->
     <div class="text-center sm:text-left">
-      <h2 id="result-title" class="font-sans font-semibold text-ink" style="font-size: 22px; letter-spacing: -0.8px;">
-        Recommended daily portion: feed your pet about 250 grams per day
+      <h2 id="result-title" class="font-sans font-semibold text-ink" style="font-size: 22px; letter-spacing: 0;">
+        Feed your pet about 250 grams per day.
       </h2>
-      <p class="text-mute" style="font-size: 13px; margin-top: 6px;">Based on your pet's weight, life stage, body shape, and activity level.</p>
+      <p class="text-mute" style="font-size: 13px; margin-top: 6px;">This is a starting point based on the answers you gave. Watch your pet's weight and adjust with your vet if needed.</p>
     </div>
 
     <!-- Main Output Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3" style="gap: 16px;">
       <!-- Daily Total Card -->
       <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-2 text-center flex flex-col justify-between" style="padding: 20px;">
-        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Total Daily Portion</h3>
+        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Food per day</h3>
         <div style="margin: 16px 0;">
-          <div id="result-grams-main" class="font-semibold text-ink leading-none tracking-tight" style="font-size: 32px;">250g</div>
+          <div id="result-grams-main" class="font-semibold text-ink leading-none" style="font-size: 32px;">250g</div>
           <div id="result-oz-main" class="text-body" style="font-size: 13px; margin-top: 6px;">8.8 ounces</div>
         </div>
         <div id="result-cups-main" class="text-mute" style="font-size: 12px;">~2.3 cups*</div>
@@ -293,34 +309,35 @@
 
       <!-- Meals Per Day Card -->
       <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-2 text-center flex flex-col justify-between" style="padding: 20px;">
-        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Meals Per Day</h3>
+        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Meals each day</h3>
         <div style="margin: 16px 0;">
-          <div id="result-meals-count" class="font-semibold text-ink leading-none tracking-tight" style="font-size: 32px;">2</div>
+          <div id="result-meals-count" class="font-semibold text-ink leading-none" style="font-size: 32px;">2</div>
           <div id="result-meals-note" class="text-body" style="font-size: 13px; margin-top: 6px;">Recommended schedule</div>
         </div>
-        <div class="text-mute" style="font-size: 12px;">Equal spacing is ideal</div>
+        <div class="text-mute" style="font-size: 12px;">Try to keep meal times consistent</div>
       </div>
 
       <!-- Splits Card -->
       <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-2 text-center flex flex-col justify-between" style="padding: 20px;">
-        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Amount Per Meal</h3>
+        <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">Food per meal</h3>
         <div id="result-splits-block" class="text-left text-body" style="margin: 4px 0; display: flex; flex-direction: column; font-size: 13px;">
           <!-- Meal breakdown lines go here dynamically -->
         </div>
-        <div class="text-mute" style="font-size: 10px; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(235, 235, 235, 0.3);">*Cups are estimates based on standard dry density.</div>
+        <div class="text-mute" style="font-size: 10px; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(235, 235, 235, 0.3);">Cup amounts are estimates. Weighing food is more accurate.</div>
       </div>
     </div>
 
     <!-- 80/10/10 Specific Breakdown Card -->
     <div id="raw-801010-breakdown" class="hidden bg-canvas border border-hairline rounded-md shadow-subtle-level-2" style="padding: 20px;">
-      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Daily 80/10/10 Raw Food Breakdown</h3>
+      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 8px;">DIY raw food split</h3>
+      <p class="text-mute" style="font-size: 13px; line-height: 1.5; margin-bottom: 16px;">For DIY raw feeding, this shows a common 80/10/10 split by weight.</p>
       <div class="grid grid-cols-2 sm:grid-cols-4 text-center" style="gap: 12px;">
         <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
-          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Muscle Meat (80%)</span>
+          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Meat (80%)</span>
           <span id="raw-muscle" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">200g</span>
         </div>
         <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
-          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Raw Bone (10%)</span>
+          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Bone (10%)</span>
           <span id="raw-bone" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">25g</span>
         </div>
         <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
@@ -328,7 +345,7 @@
           <span id="raw-liver" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">12.5g</span>
         </div>
         <div class="border border-hairline rounded-sm bg-canvas-soft" style="padding: 12px;">
-          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Other Organ (5%)</span>
+          <span class="block text-mute uppercase font-mono" style="font-size: 10px;">Other organ (5%)</span>
           <span id="raw-other" class="block font-semibold text-ink" style="font-size: 18px; margin-top: 6px;">12.5g</span>
         </div>
       </div>
@@ -336,12 +353,13 @@
 
     <!-- Mixed Feeding Split Breakdown Card -->
     <div id="mixed-breakdown" class="hidden bg-canvas border border-hairline rounded-md shadow-subtle-level-2" style="padding: 20px;">
-      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 16px;">Mixed Feeding Portions (50/50 Split)</h3>
+      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px; margin-bottom: 8px;">Dry and wet food split</h3>
+      <p class="text-mute" style="font-size: 13px; line-height: 1.5; margin-bottom: 16px;">This uses a simple 40% dry and 60% wet split by weight.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: 16px;">
         <div class="border border-hairline rounded-sm bg-canvas-soft flex items-center justify-between" style="padding: 16px;">
           <div>
-            <span class="block text-[13px] font-medium text-ink">Dry Kibble (Morning)</span>
-            <span class="block text-mute" style="font-size: 11px;">Recommended dry food portion</span>
+            <span class="block text-[13px] font-medium text-ink">Dry food</span>
+            <span class="block text-mute" style="font-size: 11px;">Good for one meal or part of the day</span>
           </div>
           <div class="text-right">
             <span id="mixed-dry-g" class="block font-bold text-ink" style="font-size: 18px;">100g</span>
@@ -350,8 +368,8 @@
         </div>
         <div class="border border-hairline rounded-sm bg-canvas-soft flex items-center justify-between" style="padding: 16px;">
           <div>
-            <span class="block text-[13px] font-medium text-ink">Wet Food (Evening)</span>
-            <span class="block text-mute" style="font-size: 11px;">Based on standard 150g (5.3 oz) pouch size</span>
+            <span class="block text-[13px] font-medium text-ink">Wet food</span>
+            <span class="block text-mute" style="font-size: 11px;">Based on a standard 150g pouch</span>
           </div>
           <div class="text-right">
             <span id="mixed-wet-g" class="block font-bold text-ink" style="font-size: 18px;">150g</span>
@@ -361,18 +379,19 @@
       </div>
     </div>
 
-    <!-- Puppy/Kitten Transition Notice (Quieter neutral style) -->
+    <!-- Puppy/Kitten transition note -->
     <div id="puppy-transition-card" class="hidden bg-canvas-soft-2 border border-hairline rounded-sm text-[13px] text-body flex items-start" style="padding: 16px; gap: 10px;">
-      <span class="leading-none select-none" style="font-size: 16px;">📌</span>
+      <span class="leading-none select-none" aria-hidden="true" style="font-size: 16px;">i</span>
       <div>
-        <strong class="font-semibold text-ink">Food Transition Notice:</strong> 
-        <span id="puppy-transition-text">When your pet is 1 year old, transition to adult portion sizes.</span>
+        <strong class="font-semibold text-ink">Growing pet note:</strong>
+        <span id="puppy-transition-text">When your pet is 1 year old, move toward adult portion sizes.</span>
       </div>
     </div>
 
     <!-- Bag Duration Calculator (Secondary) -->
     <div style="padding-top: 24px; border-top: 1px solid var(--color-hairline); display: flex; flex-direction: column; gap: 16px;">
-      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">How long will a food bag last?</h3>
+      <h3 class="font-mono uppercase tracking-wider text-body" style="font-size: 11px;">How long will the food last?</h3>
+      <p class="text-mute" style="font-size: 13px; line-height: 1.5;">Optional: enter your bag size and we will estimate when you may need to buy more.</p>
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center" style="gap: 16px;">
         <!-- Bag Size Input -->
         <div class="flex-grow max-w-sm">
@@ -405,8 +424,8 @@
 
       <!-- Bag Output results -->
       <div id="bag-results" class="hidden bg-canvas-soft-2 border border-hairline rounded-sm text-body leading-relaxed" style="padding: 16px; font-size: 13px;">
-        <p id="bag-last-text">This bag of food will last about <strong class="text-ink">0 days</strong>.</p>
-        <p id="bag-date-text">You will need to buy a new bag by: <strong class="text-ink">[Date]</strong></p>
+        <p id="bag-last-text">This food should last about <strong class="text-ink">0 days</strong>.</p>
+        <p id="bag-date-text">Estimated next food date: <strong class="text-ink">[Date]</strong></p>
       </div>
     </div>
   </div>
@@ -414,6 +433,36 @@
 
 <style>
   /* Calculator option hover states */
+  .calc-section {
+    padding-top: 24px;
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  .calc-section:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .calc-section-title {
+    color: var(--color-ink);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .calc-section-help {
+    color: var(--color-mute);
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 6px 0 16px;
+    max-width: 620px;
+  }
+
+  .calc-option {
+    min-height: 48px;
+  }
+
   .calc-option:hover {
     background-color: var(--color-canvas-soft);
   }
@@ -446,6 +495,12 @@
       padding: 40px !important;
     }
   }
+
+  @media (max-width: 520px) {
+    .calc-option {
+      min-height: 56px;
+    }
+  }
 </style>
 
 <script>
@@ -472,12 +527,12 @@
       if (petType === 'cat') {
         breedSizeSec?.classList.add('hidden');
         if (youngLabel) youngLabel.textContent = 'Kitten';
-        if (puppyAgeLabel) puppyAgeLabel.textContent = 'How old is your kitten?';
+        if (puppyAgeLabel) puppyAgeLabel.textContent = 'Kitten age';
         if (puppyMealsLabel) puppyMealsLabel.textContent = 'How many meals do you want to feed per day?';
       } else {
         breedSizeSec?.classList.remove('hidden');
         if (youngLabel) youngLabel.textContent = 'Puppy';
-        if (puppyAgeLabel) puppyAgeLabel.textContent = 'How old is your puppy?';
+        if (puppyAgeLabel) puppyAgeLabel.textContent = 'Puppy age';
         if (puppyMealsLabel) puppyMealsLabel.textContent = 'How many meals do you want to feed per day?';
       }
 
@@ -619,7 +674,7 @@
       // Update Header title
       const titleEl = document.getElementById('result-title');
       if (titleEl) {
-        titleEl.textContent = `Recommended daily portion: feed ${dogName} about ${dailyGrams} grams per day.`;
+        titleEl.textContent = `Feed ${dogName} about ${dailyGrams} grams per day.`;
       }
 
       // Update Main Numbers
@@ -670,11 +725,11 @@
           if (weightUnit === 'kg') {
             const perMealKg = (perMealG / 1000).toFixed(2);
             detailText = (foodType === 'dry-kibble' || foodType === 'mixed')
-              ? `${perMealKg} kg • ~${perMealCups} ${cupsLabel}`
+              ? `${perMealKg} kg, about ${perMealCups} ${cupsLabel}`
               : `${perMealKg} kg`;
           } else {
             detailText = (foodType === 'dry-kibble' || foodType === 'mixed')
-              ? `${perMealOz} ounces • ~${perMealCups} ${cupsLabel}`
+              ? `${perMealOz} ounces, about ${perMealCups} ${cupsLabel}`
               : `${perMealOz} ounces`;
           }
 
@@ -710,11 +765,11 @@
         const liverEl = document.getElementById('raw-liver');
         const otherEl = document.getElementById('raw-other');
 
-        const rawTitleEl = raw801010Block?.querySelector('h4');
+        const rawTitleEl = raw801010Block?.querySelector('h3');
         if (rawTitleEl) {
           rawTitleEl.textContent = petType === 'cat' 
-            ? 'Daily PMR Raw Food Breakdown' 
-            : 'Daily 80/10/10 Raw Food Breakdown';
+            ? 'DIY raw food split for cats'
+            : 'DIY raw food split for dogs';
         }
 
         if (muscleEl) muscleEl.textContent = `${muscle}g`;
@@ -744,14 +799,14 @@
         const wetDescEl = wetGEl?.parentElement?.querySelector('.text-mute');
         if (wetDescEl) {
           wetDescEl.textContent = petType === 'cat'
-            ? 'Based on standard 85g (3 oz) pouch'
-            : 'Based on standard 150g (5.3 oz) pouch';
+            ? 'Based on a standard 85g cat pouch'
+            : 'Based on a standard 150g dog pouch';
         }
 
         if (dryGEl) dryGEl.textContent = `${dryG}g`;
         if (dryCupsEl) dryCupsEl.textContent = `~${dryCupsVal} cups`;
         if (wetGEl) wetGEl.textContent = `${wetG}g`;
-        if (wetPouchesEl) wetPouchesEl.textContent = `~${wetPouchesVal} pouch`;
+        if (wetPouchesEl) wetPouchesEl.textContent = `~${wetPouchesVal} ${parseFloat(wetPouchesVal) === 1 ? 'pouch' : 'pouches'}`;
       } else {
         mixedBlock?.classList.add('hidden');
       }
@@ -770,9 +825,9 @@
         const transTextEl = document.getElementById('puppy-transition-text');
         if (transTextEl) {
           if (petType === 'cat') {
-            transTextEl.textContent = `When ${dogName} is 1 year old, switch to adult food: ~${adultDailyG}g/day (based on standard adult needs).`;
+            transTextEl.textContent = `When ${dogName} is 1 year old, move toward adult portions: about ${adultDailyG}g per day.`;
           } else {
-            transTextEl.textContent = `When ${dogName} is 1 year old, switch to adult food: ~${adultDailyG}g/day (based on standard adult needs).`;
+            transTextEl.textContent = `When ${dogName} is 1 year old, move toward adult portions: about ${adultDailyG}g per day.`;
           }
         }
       } else {
@@ -814,7 +869,7 @@
 
       const displayUnit = bagUnit.toUpperCase();
       bagLastText.innerHTML = `Your <strong class="text-ink">${bagVal} ${displayUnit}</strong> bag will last about <strong class="text-ink">${daysLasted} days</strong>.`;
-      bagDateText.innerHTML = `You will need to buy a new bag by: <strong class="text-ink">${formattedDate}</strong>`;
+      bagDateText.innerHTML = `Estimated next food date: <strong class="text-ink">${formattedDate}</strong>`;
     };
 
     let hasCalculated = false;

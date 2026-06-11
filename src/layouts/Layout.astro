@@ -11,7 +11,7 @@ interface Props {
 
 const {
 	title = 'Dog Food Calculator: Free Pet Food Feeding Guide | petfoodcal',
-	description = 'Free, brand-neutral pet food calculator. Optimize raw, kibble, wet, and homemade diets for dogs and cats. Calculate grams, cups, kcal, and bag lifespan.',
+	description = 'Free, brand-neutral pet food calculator for dogs and cats. Estimate daily food amounts, meal splits, cups, grams, and how long a food bag may last.',
 	canonicalUrl = 'https://petfoodcal.vercel.app',
 	ogImage = 'https://petfoodcal.vercel.app/images/og-image.jpg',
 } = Astro.props;
@@ -75,7 +75,7 @@ const currentPath = Astro.url.pathname;
 				<!-- Brand Logo -->
 				<a href="/" class="nav-logo flex items-center gap-2.5 group" aria-label="petfoodcal Home">
 					<img src="/favicon.svg" alt="petfoodcal logo" class="w-8 h-8" />
-					<span class="font-sans font-semibold text-ink select-none" style="font-size: 20px; letter-spacing: -0.6px;">
+					<span class="font-sans font-semibold text-ink select-none" style="font-size: 20px;">
 						petfoodcal
 					</span>
 				</a>
@@ -83,10 +83,10 @@ const currentPath = Astro.url.pathname;
 				<!-- Desktop Nav Links -->
 				<nav class="hidden lg:flex items-center" style="gap: 4px;" aria-label="Main Navigation">
 					<a href="/" class={`nav-link rounded-full text-[13px] font-normal focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none ${currentPath === '/' ? 'text-ink bg-canvas-soft-2 font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft-2/50'}`} style="padding: 6px 10px; transition: all 0.15s ease-out;">
-						Calculate Portions
+						Calculator
 					</a>
 					<a href="/about" class={`nav-link rounded-full text-[13px] font-normal focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none ${currentPath === '/about' ? 'text-ink bg-canvas-soft-2 font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft-2/50'}`} style="padding: 6px 10px; transition: all 0.15s ease-out;">
-						About Us
+						About
 					</a>
 					<a href="/how-it-works" class={`nav-link rounded-full text-[13px] font-normal focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none ${currentPath === '/how-it-works' ? 'text-ink bg-canvas-soft-2 font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft-2/50'}`} style="padding: 6px 10px; transition: all 0.15s ease-out;">
 						How It Works
@@ -108,7 +108,7 @@ const currentPath = Astro.url.pathname;
 				<!-- Desktop CTAs -->
 				<div class="hidden lg:flex items-center" style="gap: 12px;">
 					<a href="/#calculator-anchor" class="nav-cta-primary inline-flex items-center justify-center rounded-sm bg-primary text-on-primary text-[14px] font-medium focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none" style="height: 32px; padding: 0 16px; transition: all 0.15s ease-out;">
-						Calculate Portions
+						Calculator
 					</a>
 				</div>
 
@@ -123,15 +123,15 @@ const currentPath = Astro.url.pathname;
 			<!-- Mobile Nav Drawer -->
 			<div id="mobile-nav" class="hidden absolute left-0 w-full bg-canvas border-b border-hairline shadow-subtle-level-3 lg:hidden" style="top: 64px; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);">
 				<nav class="flex flex-col" style="padding: 16px; gap: 4px;" aria-label="Mobile Navigation">
-					<a href="/" class={`rounded-sm text-[14px] ${currentPath === '/' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">Calculate Portions</a>
-					<a href="/about" class={`rounded-sm text-[14px] ${currentPath === '/about' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">About Us</a>
+					<a href="/" class={`rounded-sm text-[14px] ${currentPath === '/' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">Calculator</a>
+					<a href="/about" class={`rounded-sm text-[14px] ${currentPath === '/about' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">About</a>
 					<a href="/how-it-works" class={`rounded-sm text-[14px] ${currentPath === '/how-it-works' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">How It Works</a>
 					<a href="/faq" class={`rounded-sm text-[14px] ${currentPath === '/faq' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">FAQ</a>
-					<a href="/contact" class={`rounded-sm text-[14px] ${currentPath === '/contact' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">Contact Us</a>
+					<a href="/contact" class={`rounded-sm text-[14px] ${currentPath === '/contact' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">Contact</a>
 					<div style="height: 1px; background: var(--color-hairline); margin: 8px 0;"></div>
 					<a href="/privacy" class={`rounded-sm text-[14px] ${currentPath === '/privacy' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">Privacy Policy</a>
 					<a href="/terms" class={`rounded-sm text-[14px] ${currentPath === '/terms' ? 'text-ink bg-canvas-soft font-medium' : 'text-body hover:text-ink hover:bg-canvas-soft'} focus-visible:bg-canvas-soft focus-visible:outline-none`} style="padding: 10px 12px; transition: all 0.15s ease-out;">Terms & Conditions</a>
-					<a href="/#calculator-anchor" class="inline-flex items-center justify-center rounded-sm bg-primary text-on-primary text-[14px] font-medium hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none" style="height: 44px; margin: 8px 12px 0; transition: all 0.15s ease-out;">Calculate Portions</a>
+					<a href="/#calculator-anchor" class="inline-flex items-center justify-center rounded-sm bg-primary text-on-primary text-[14px] font-medium hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none" style="height: 44px; margin: 8px 12px 0; transition: all 0.15s ease-out;">Use the calculator</a>
 				</nav>
 			</div>
 		</header>
@@ -147,22 +147,22 @@ const currentPath = Astro.url.pathname;
 				<!-- Brand Info -->
 				<div class="flex flex-col items-center md:items-start text-center md:text-left">
 					<a href="/" class="flex items-center gap-2.5 group" style="margin-bottom: 8px;" aria-label="petfoodcal Home">
-						<span class="font-sans font-semibold text-ink" style="font-size: 18px; letter-spacing: -0.5px;">
+						<span class="font-sans font-semibold text-ink" style="font-size: 18px;">
 							petfoodcal
 						</span>
 					</a>
 					<p class="text-mute leading-relaxed" style="font-size: 13px; max-width: 320px;">
-						Calculate accurate daily feeding portions with our free, brand-neutral, and science-backed pet food calculator.
+						Estimate daily food amounts for dogs and cats with a free, brand-neutral calculator.
 					</p>
 				</div>
 
 				<!-- Navigation & Copyright -->
 				<div class="flex flex-col items-center md:items-end gap-4 text-mute text-right" style="font-size: 13px;">
 					<div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-						<a href="/about" class="footer-link text-body hover:text-ink">About Us</a>
+						<a href="/about" class="footer-link text-body hover:text-ink">About</a>
 						<a href="/how-it-works" class="footer-link text-body hover:text-ink">How It Works</a>
 						<a href="/faq" class="footer-link text-body hover:text-ink">FAQ</a>
-						<a href="/contact" class="footer-link text-body hover:text-ink">Contact Us</a>
+						<a href="/contact" class="footer-link text-body hover:text-ink">Contact</a>
 						<a href="/privacy" class="footer-link text-body hover:text-ink">Privacy Policy</a>
 						<a href="/terms" class="footer-link text-body hover:text-ink">Terms & Conditions</a>
 					</div>

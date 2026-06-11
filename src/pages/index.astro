@@ -2,299 +2,151 @@
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 import Calculator from '../components/Calculator.astro';
+
+const helpCards = [
+  {
+    title: 'Start with a daily amount',
+    text: 'Enter your pet details and get a clear gram amount for the whole day.',
+  },
+  {
+    title: 'Split it into meals',
+    text: 'See how much to serve in the morning, evening, or three smaller meals.',
+  },
+  {
+    title: 'Plan your next food order',
+    text: 'Add your bag size and estimate how many days of food you have left.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Is this a replacement for my vet?',
+    answer: 'No. Use this as a helpful starting point. If your pet is pregnant, ill, underweight, overweight, or on a medical diet, ask your vet before changing food amounts.',
+  },
+  {
+    question: 'Should I measure in cups or grams?',
+    answer: 'Grams are better. Cups are only an estimate because every food has a different shape and density.',
+  },
+  {
+    question: 'How often should I adjust the amount?',
+    answer: 'Check your pet body shape and weight every 2 to 4 weeks. Adjust slowly if they are gaining or losing too much.',
+  },
+];
 ---
 
-<Layout 
-  title="Pet Food Calculator — Free Dog Feeding Calculator by Weight & Age | petfoodcal"
-  description="Free pet food calculator for raw, kibble, wet & homemade diets. Get daily grams, cups, meal splits & bag duration. Works for puppies, adults & seniors."
+<Layout
+  title="Pet Food Calculator - Simple Dog & Cat Feeding Amounts | petfoodcal"
+  description="Use this free pet food calculator to estimate daily food amounts for dogs and cats. Get grams, cups, meal splits, and food bag duration in plain English."
 >
-  <!-- Hero Section with atmospheric Vercel Mesh Gradient (Quieter static version) -->
-  <section class="relative w-full overflow-hidden bg-canvas border-b border-hairline" style="padding-top: 96px; padding-bottom: 80px;">
-    <!-- Mesh Gradient Backdrop (Static, ultra-low opacity) -->
-    <div class="absolute inset-0 opacity-[0.06] select-none pointer-events-none z-0">
-      <div class="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tr from-gradient-develop-start to-gradient-develop-end blur-[140px]"></div>
-      <div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-gradient-preview-start to-gradient-preview-end blur-[140px]"></div>
-      <div class="absolute bottom-[-10%] left-[20%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-gradient-ship-start to-gradient-ship-end blur-[140px]"></div>
-    </div>
+  <section class="bg-canvas border-b border-hairline" style="padding: 72px 24px 48px;">
+    <div class="max-w-[1120px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px]" style="gap: 40px; align-items: end;">
+      <div>
+        <span class="font-mono text-[12px] uppercase tracking-wider text-link font-semibold">Dog and cat feeding help</span>
+        <h1 class="font-sans font-semibold text-ink" style="font-size: clamp(38px, 6vw, 64px); line-height: 1.02; margin: 14px 0 18px; max-width: 760px;">
+          Know how much food to give your pet each day.
+        </h1>
+        <p class="text-body" style="font-size: 18px; line-height: 1.7; max-width: 680px;">
+          A simple calculator for dogs and cats. Choose the food type, enter your pet details, and get a daily amount you can actually understand.
+        </p>
+        <div class="flex flex-wrap" style="gap: 12px; margin-top: 28px;">
+          <a href="#calculator-anchor" class="inline-flex items-center justify-center rounded-sm bg-primary text-on-primary text-[15px] font-semibold shadow-subtle-level-2" style="height: 46px; padding: 0 22px;">
+            Use the calculator
+          </a>
+          <a href="/how-it-works" class="inline-flex items-center justify-center rounded-sm border border-hairline bg-canvas text-ink text-[15px] font-semibold" style="height: 46px; padding: 0 22px;">
+            See how it works
+          </a>
+        </div>
+      </div>
 
-    <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-      <!-- Section Mono Eyebrow (Muted, quiet style) -->
-      <span class="hero-eyebrow inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-hairline bg-canvas-soft text-body font-mono text-[12px] font-medium tracking-tight" style="margin-bottom: 24px;">
-        <span class="w-1.5 h-1.5 rounded-full bg-hairline-strong"></span>
-        Calculate Pet Nutrition Scientifically
-      </span>
-      
-      <!-- Headline -->
-      <h1 class="hero-headline font-sans font-semibold text-ink" style="font-size: clamp(36px, 5.5vw, 54px); letter-spacing: -2.4px; line-height: 1.05; max-width: 720px; margin: 0 auto;">
-        Calculate Exactly How Much to Feed Your Dog or Cat.
-      </h1>
-
-      <!-- Subtitle -->
-      <p class="hero-subtitle text-body" style="font-size: clamp(15px, 2vw, 18px); line-height: 1.6; max-width: 540px; margin: 16px auto 0;">
-        Determine daily grams, cups, meal splits, and bag duration schedules with our brand-neutral dog and cat food calculator.
-      </p>
-
-      <!-- Hero CTA -->
-      <div style="margin-top: 32px;">
-        <a href="#calculator-anchor" class="inline-flex items-center justify-center h-12 px-8 rounded-full bg-primary text-on-primary text-[15px] font-medium shadow-subtle-level-2 hover:bg-primary/90 transition-all duration-200 active:scale-[0.97]">
-          Start Calculating
-        </a>
+      <div class="bg-canvas-soft border border-hairline rounded-lg shadow-subtle-level-2" style="padding: 24px;">
+        <div class="font-mono uppercase tracking-wider text-link font-semibold" style="font-size: 12px;">Quick example</div>
+        <div style="margin-top: 18px;">
+          <div class="text-ink font-semibold" style="font-size: 42px; line-height: 1;">250g</div>
+          <p class="text-body" style="font-size: 14px; line-height: 1.6; margin-top: 8px;">daily food amount</p>
+        </div>
+        <div class="grid grid-cols-2" style="gap: 12px; margin-top: 22px;">
+          <div class="bg-canvas border border-hairline rounded-sm" style="padding: 14px;">
+            <div class="font-semibold text-ink">2 meals</div>
+            <div class="text-mute" style="font-size: 13px; margin-top: 4px;">morning and evening</div>
+          </div>
+          <div class="bg-canvas border border-hairline rounded-sm" style="padding: 14px;">
+            <div class="font-semibold text-ink">125g</div>
+            <div class="text-mute" style="font-size: 13px; margin-top: 4px;">each meal</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Main Tool Container Section -->
-  <section class="bg-canvas-soft relative z-20" style="padding: 64px 24px;">
-    <div class="max-w-[1200px] mx-auto">
-      <div id="calculator-anchor">
-        <Calculator />
-      </div>
-    </div>
+  <section id="calculator-anchor" class="bg-canvas-soft" style="padding: 56px 24px;">
+    <Calculator />
   </section>
 
-  <!-- SEO Content Guide Section -->
-  <section class="bg-canvas border-t border-hairline relative z-20" style="padding: 128px 24px;">
-    <div class="max-w-[720px] mx-auto">
-      
-      <!-- Section Header -->
-      <div style="margin-bottom: 48px;">
-        <span class="font-mono text-[12px] uppercase tracking-wider text-mute inline-block" style="margin-bottom: 16px;">Complete Feeding Resource</span>
-        <h2 class="display-lg font-semibold text-ink" style="font-size: 32px; letter-spacing: -1.28px; line-height: 40px; margin-bottom: 24px;">
-          Scientific guide to pet nutrition: calculating perfect portions.
+  <section class="bg-canvas border-t border-hairline" style="padding: 80px 24px;">
+    <div class="max-w-[1120px] mx-auto">
+      <div class="max-w-[680px]" style="margin-bottom: 32px;">
+        <span class="font-mono text-[12px] uppercase tracking-wider text-link font-semibold">What you get</span>
+        <h2 class="font-sans font-semibold text-ink" style="font-size: clamp(28px, 4vw, 40px); line-height: 1.15; margin-top: 12px;">
+          Clear feeding numbers without brand pressure.
         </h2>
-        
-        <!-- Intro Paragraph Container -->
-        <div style="margin-bottom: 32px;">
-          <div class="flex items-center justify-between" style="margin-bottom: 12px;">
-            <span class="font-mono uppercase tracking-wider text-mute text-[12px] font-semibold">Overview // Science-Backed Portions</span>
-          </div>
-          <p class="text-body max-w-[65ch]" style="font-size: 16px; line-height: 1.7; color: var(--color-body);">
-            Feeding your dog or cat shouldn't be a guessing game. Standard pet food bags often give very broad weight guidelines. These broad guidelines can easily cause you to feed too much, leading to weight gain, or feed too little, causing health issues. By using a scientific portion calculator, you can find the exact amount of food your pet needs every day. This is calculated using your pet's target weight, age, exercise level, and whether they are spayed or neutered. This math-based approach helps your dog or cat stay at a healthy weight and avoid issues like obesity. Your pet's energy needs change as they grow, so fixed guidelines on food bags are rarely right for their whole life. Our tool does the math for you so your pet stays healthy.
-          </p>
-        </div>
-      </div>
-
-      <!-- Editorial Prose Layout -->
-      <article style="max-width: 720px; margin: 0 auto;">
-        
-        <!-- Section 1 -->
-        <div style="margin-bottom: 48px;">
-          <h3 class="display-sm font-semibold text-ink" style="font-size: 20px; letter-spacing: -0.6px; line-height: 28px; margin: 0 0 20px;">Optimizing raw and cooked canine diets.</h3>
-          <div style="display: flex; flex-direction: column; gap: 32px;">
-            
-            <!-- Paragraph 1 Container -->
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <div class="flex items-center justify-between">
-                <span class="font-mono uppercase tracking-wider text-body text-[12px] font-semibold">01 // Raw Feeding Formula (BARF/PMR)</span>
-              </div>
-              <p class="text-body max-w-[65ch]" style="font-size: 15px; line-height: 1.7; color: var(--color-body);">
-                For pet owners who want to feed fresh, raw food, getting the portions right is very important. A raw food calculator calculates exactly how many grams of fresh food your pet needs each day. If you are preparing a raw diet at home, our calculator breaks down the raw portions for you using standard rules. This split is called the 80/10/10 diet. It splits the daily meals into 80% muscle meat (for protein), 10% raw bones (for calcium and minerals), 5% liver, and 5% other organs (like kidneys or spleen) to give your pet all the vitamins they need. Keeping these exact balances prevents bone weakness in growing puppies and organ issues in adult dogs. Our tool splits these daily amounts into separate meals to make your raw meal prep simple.
-              </p>
-            </div>
-
-            <!-- Paragraph 2 Container -->
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <div class="flex items-center justify-between">
-                <span class="font-mono uppercase tracking-wider text-body text-[12px] font-semibold">02 // Home Cooked & Subscriptions</span>
-              </div>
-              <p class="text-body max-w-[65ch]" style="font-size: 15px; line-height: 1.7; color: var(--color-body);">
-                If you prefer to cook food for your pet at home, using a homemade food calculator is very helpful. Home-cooked diets contain much more water than dry kibble, so you must weigh the portions carefully. Also, if you want to check if fresh pet food delivery subscriptions (like the ones from commercial fresh food companies) are giving you the right amounts, our tool provides a neutral check. You can easily find out how much your pet needs without sharing your email or signing up for paid plans. Our tool calculates the right portion sizes for homemade recipes. This helps you make sure your pet gets a balanced meal that is both healthy and affordable.
-              </p>
-            </div>
-            
-          </div>
-        </div>
-
-        <!-- Section 2 -->
-        <div style="margin-bottom: 48px;">
-          <h3 class="display-sm font-semibold text-ink" style="font-size: 20px; letter-spacing: -0.6px; line-height: 28px; margin: 0 0 20px;">Caloric targets and mixed feeding splits.</h3>
-          <div style="display: flex; flex-direction: column; gap: 32px;">
-            
-            <!-- Paragraph 3 Container -->
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <div class="flex items-center justify-between">
-                <span class="font-mono uppercase tracking-wider text-body text-[12px] font-semibold">03 // Caloric Targets (RER & MER)</span>
-              </div>
-              <p class="text-body max-w-[65ch]" style="font-size: 15px; line-height: 1.7; color: var(--color-body);">
-                Finding the right amount of food starts with calories. A calorie calculator uses simple formulas to find two things: first, the basic calories your pet burns just resting, and second, the actual calories they need for their daily activity. This method calculates portions based on energy, rather than generic measuring cups which can be off by as much as 30%. By using calorie targets, you ensure your dog gets exactly what their body burns. The math starts with a resting energy formula (which is the basic energy needed for breathing and digesting) and then adjusts it based on whether your pet is fixed and how active they are during the day.
-              </p>
-            </div>
-
-            <!-- Paragraph 4 Container -->
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <div class="flex items-center justify-between">
-                <span class="font-mono uppercase tracking-wider text-body text-[12px] font-semibold">04 // Mixed Feeding Splits</span>
-              </div>
-              <p class="text-body max-w-[65ch]" style="font-size: 15px; line-height: 1.7; color: var(--color-body);">
-                Many owners like to feed their pets a mix of both worlds: dry kibble for convenience and clean teeth, and canned wet food for extra water and taste. A wet and dry food calculator is the best way to solve this mix. Our calculator splits the daily calories 50/50. It accounts for the high water content of canned wet food and the dry density of kibble. This split ensures your pet gets the right nutrition without eating too many calories. Mixed feeding is a great way to support healthy joints and smooth digestion. We recommend feeding dry kibble in the morning and wet food in the evening to keep their digestion clean and make mealtime exciting.
-              </p>
-            </div>
-            
-          </div>
-        </div>
-
-        <!-- Section 3 -->
-        <div style="margin-bottom: 48px;">
-          <h3 class="display-sm font-semibold text-ink" style="font-size: 20px; letter-spacing: -0.6px; line-height: 28px; margin: 0 0 20px;">Feline nutrition: calculations for indoor and active cats.</h3>
-          <div style="display: flex; flex-direction: column; gap: 32px;">
-            
-            <!-- Paragraph 5 Container -->
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <div class="flex items-center justify-between">
-                <span class="font-mono uppercase tracking-wider text-body text-[12px] font-semibold">05 // Feline Dietary Requirements</span>
-              </div>
-              <p class="text-body max-w-[65ch]" style="font-size: 15px; line-height: 1.7; color: var(--color-body);">
-                Cats are strict meat-eaters. This means their bodies must have animal protein, specific vitamins like taurine, and plenty of water in their food. Because cats can easily get bladder or kidney issues, feeding a mix of wet and dry food is highly recommended. Mixed feeding keeps cats hydrated and helps them maintain a healthy weight. Our cat food calculator looks at your cat's weight, body shape, active level, and spay or neuter status. This is very important for indoor cats who do not move around much and can gain weight easily. For raw feeders, using a raw cat food calculator helps keep the correct meat-to-bone-and-organ balance. If your cat eats store-bought wet food, our calculator shows you how many pouches (like standard 85g or 3oz pouches) to open daily. Feeding the right portion size is the easiest way to help your cat live a long, healthy life.
-              </p>
-            </div>
-            
-          </div>
-        </div>
-
-        <!-- Final CTA -->
-        <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--color-hairline);">
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div class="flex items-center justify-between" style="margin-bottom: 4px;">
-              <span class="font-mono uppercase tracking-wider text-mute text-[12px] font-semibold">Summary // Optimize Nutrition</span>
-            </div>
-            <p class="text-body font-medium text-ink max-w-[65ch]" style="font-size: 15px; line-height: 1.7; margin: 0;">
-              Whether your pet is an active dog, an indoor cat, or anything in between, we invite you to use our site for clean, math-based feeding guidelines. We make it simple to find your pet's ideal meal plan. Start using the calculator today to help your pet live a healthier life. We always recommend talking to your local vet to check your pet's portion sizes and keep track of their body weight.
-            </p>
-          </div>
-        </div>
-
-      </article>
-    </div>
-  </section>
-
-  <!-- Resources Directory Section -->
-  <section class="bg-canvas-soft border-t border-hairline relative z-20" style="padding: 96px 24px;">
-    <div class="max-w-[1200px] mx-auto">
-      <!-- Section Header -->
-      <div class="text-center" style="margin-bottom: 48px;">
-        <span class="font-mono text-[12px] uppercase tracking-wider text-mute inline-block" style="margin-bottom: 16px;">Resources & Documentation</span>
-        <h2 class="display-lg font-semibold text-ink" style="font-size: 32px; letter-spacing: -1.28px; line-height: 40px; margin-bottom: 16px;">
-          Learn More About Our Calculator
-        </h2>
-        <p class="text-body" style="font-size: 16px; max-width: 540px; margin: 0 auto;">
-          Explore our mission, get in touch with our team, or review our privacy policies and terms of use.
+        <p class="text-body" style="font-size: 16px; line-height: 1.7; margin-top: 12px;">
+          The calculator does not sell food, push a subscription, or ask for your email. It just gives you a practical starting amount.
         </p>
       </div>
 
-      <!-- Grid of Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- About Us Card -->
-        <a href="/about" class="group relative flex flex-col justify-between bg-canvas border border-hairline rounded-lg p-6 shadow-subtle-level-1 hover:shadow-subtle-level-2 hover:border-hairline-strong transition-all duration-200 ease-out-quart" style="min-height: 200px;">
-          <div>
-            <div class="flex items-center justify-between" style="margin-bottom: 16px;">
-              <span class="font-mono uppercase tracking-wider text-link text-[10px] font-semibold">Mission</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-link opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-            </div>
-            <h3 class="font-sans font-semibold text-ink text-[18px] tracking-tight" style="margin-bottom: 8px;">About Us</h3>
-            <p class="text-body text-[13px] leading-relaxed">
-              Discover why we built petfoodcal and learn about our commitment to 100% brand-neutral nutrition guidelines.
-            </p>
+      <div class="grid grid-cols-1 md:grid-cols-3" style="gap: 18px;">
+        {helpCards.map((card) => (
+          <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-1" style="padding: 24px;">
+            <h3 class="font-semibold text-ink" style="font-size: 18px; line-height: 1.35;">{card.title}</h3>
+            <p class="text-body" style="font-size: 14px; line-height: 1.7; margin-top: 10px;">{card.text}</p>
           </div>
-          <span class="text-link text-[13px] font-semibold inline-flex items-center gap-1" style="margin-top: 16px;">
-            Learn More
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
-
-        <!-- Contact Us Card -->
-        <a href="/contact" class="group relative flex flex-col justify-between bg-canvas border border-hairline rounded-lg p-6 shadow-subtle-level-1 hover:shadow-subtle-level-2 hover:border-hairline-strong transition-all duration-200 ease-out-quart" style="min-height: 200px;">
-          <div>
-            <div class="flex items-center justify-between" style="margin-bottom: 16px;">
-              <span class="font-mono uppercase tracking-wider text-link text-[10px] font-semibold">Support</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-link opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-            </div>
-            <h3 class="font-sans font-semibold text-ink text-[18px] tracking-tight" style="margin-bottom: 8px;">Contact Us</h3>
-            <p class="text-body text-[13px] leading-relaxed">
-              Have feedback, questions about our formulas, or feature requests? Send our team a message.
-            </p>
-          </div>
-          <span class="text-link text-[13px] font-semibold inline-flex items-center gap-1" style="margin-top: 16px;">
-            Get in Touch
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
-
-        <!-- Privacy Policy Card -->
-        <a href="/privacy" class="group relative flex flex-col justify-between bg-canvas border border-hairline rounded-lg p-6 shadow-subtle-level-1 hover:shadow-subtle-level-2 hover:border-hairline-strong transition-all duration-200 ease-out-quart" style="min-height: 200px;">
-          <div>
-            <div class="flex items-center justify-between" style="margin-bottom: 16px;">
-              <span class="font-mono uppercase tracking-wider text-link text-[10px] font-semibold">Security</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-link opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-            </div>
-            <h3 class="font-sans font-semibold text-ink text-[18px] tracking-tight" style="margin-bottom: 8px;">Privacy Policy</h3>
-            <p class="text-body text-[13px] leading-relaxed">
-              Read our zero-data collection guarantee and how we use local storage to keep your calculations private.
-            </p>
-          </div>
-          <span class="text-link text-[13px] font-semibold inline-flex items-center gap-1" style="margin-top: 16px;">
-            View Policy
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
-
-        <!-- Terms & Conditions Card -->
-        <a href="/terms" class="group relative flex flex-col justify-between bg-canvas border border-hairline rounded-lg p-6 shadow-subtle-level-1 hover:shadow-subtle-level-2 hover:border-hairline-strong transition-all duration-200 ease-out-quart" style="min-height: 200px;">
-          <div>
-            <div class="flex items-center justify-between" style="margin-bottom: 16px;">
-              <span class="font-mono uppercase tracking-wider text-link text-[10px] font-semibold">Legal</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-link opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-            </div>
-            <h3 class="font-sans font-semibold text-ink text-[18px] tracking-tight" style="margin-bottom: 8px;">Terms & Conditions</h3>
-            <p class="text-body text-[13px] leading-relaxed">
-              Review our terms of service, acceptable use rules, and our standard metabolic scaling disclaimers.
-            </p>
-          </div>
-          <span class="text-link text-[13px] font-semibold inline-flex items-center gap-1" style="margin-top: 16px;">
-            Read Terms
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <style>
-    /* Hero entrance animations */
-    .hero-eyebrow,
-    .hero-headline,
-    .hero-subtitle {
-      animation: hero-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    .hero-eyebrow { animation-delay: 0.05s; }
-    .hero-headline { animation-delay: 0.15s; }
-    .hero-subtitle { animation-delay: 0.25s; }
+  <section class="bg-canvas-soft border-t border-hairline" style="padding: 80px 24px;">
+    <div class="max-w-[960px] mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr]" style="gap: 40px;">
+      <div>
+        <span class="font-mono text-[12px] uppercase tracking-wider text-link font-semibold">Plain-English guide</span>
+        <h2 class="font-sans font-semibold text-ink" style="font-size: 30px; line-height: 1.2; margin-top: 12px;">How to use the result</h2>
+        <p class="text-body" style="font-size: 15px; line-height: 1.7; margin-top: 12px;">
+          Treat the number as a starting point, then watch your pet. Healthy feeding is about the amount, body shape, energy, and regular check-ins.
+        </p>
+      </div>
 
-    @keyframes hero-fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+      <div class="bg-canvas border border-hairline rounded-lg shadow-subtle-level-2" style="padding: 28px;">
+        <ol class="text-body" style="display: flex; flex-direction: column; gap: 18px; list-style-position: inside; font-size: 15px; line-height: 1.7;">
+          <li><strong class="text-ink">Weigh the food when you can.</strong> Cups are convenient, but grams are more accurate.</li>
+          <li><strong class="text-ink">Change slowly.</strong> If you need to adjust food, do it gradually over several days.</li>
+          <li><strong class="text-ink">Watch body shape.</strong> You should usually feel ribs easily without seeing sharp bones.</li>
+          <li><strong class="text-ink">Ask a vet for special cases.</strong> Puppies, kittens, seniors, pregnant pets, and pets with health problems may need a custom plan.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-eyebrow,
-      .hero-headline,
-      .hero-subtitle {
-        animation: none;
-      }
-    }
-  </style>
+  <section class="bg-canvas border-t border-hairline" style="padding: 80px 24px;">
+    <div class="max-w-[960px] mx-auto">
+      <div class="text-center" style="margin-bottom: 32px;">
+        <span class="font-mono text-[12px] uppercase tracking-wider text-link font-semibold">Common questions</span>
+        <h2 class="font-sans font-semibold text-ink" style="font-size: 30px; line-height: 1.2; margin-top: 12px;">Quick answers before you calculate</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3" style="gap: 18px;">
+        {faqs.map((faq) => (
+          <div class="bg-canvas-soft border border-hairline rounded-md shadow-subtle-level-1" style="padding: 22px;">
+            <h3 class="font-semibold text-ink" style="font-size: 16px; line-height: 1.4;">{faq.question}</h3>
+            <p class="text-body" style="font-size: 14px; line-height: 1.7; margin-top: 10px;">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center" style="margin-top: 32px;">
+        <a href="/faq" class="inline-flex items-center justify-center rounded-sm border border-hairline bg-canvas text-ink text-[14px] font-semibold" style="height: 42px; padding: 0 18px;">
+          Read all questions
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>

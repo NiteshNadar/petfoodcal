@@ -4,44 +4,44 @@ import Layout from '../layouts/Layout.astro';
 
 const faqs = [
   {
-    question: "How much wet food to feed a dog calculator",
-    answer: "The amount of wet food depends on your dog's weight, life stage, and activity level. Wet food is roughly 75% moisture, so dogs typically need 2 to 3 times the weight in wet food compared to dry kibble. Use our calculator above: select \"Wet / Canned Food\" as food type, enter your dog's weight, and get the exact daily grams and meal splits."
+    question: "How much wet food should I feed my dog?",
+    answer: "The amount depends on your dog's weight, age, body shape, and activity level. Wet food contains a lot of water, so the serving weight is usually higher than dry food. Choose \"Wet or canned food\" in the calculator to get a daily gram amount and meal split."
   },
   {
-    question: "How long will my dog food last calculator",
-    answer: "Our bag duration calculator estimates how many days a bag of food will last. After calculating your dog's daily portion, enter your bag size (in pounds or kilograms) in the secondary calculator. It divides the total bag weight by daily intake and tells you the exact date you will need to purchase your next bag."
+    question: "How long will my pet food last?",
+    answer: "After you calculate the daily food amount, enter your bag size in pounds or kilograms. The calculator divides the bag weight by the daily amount and estimates when you may need to buy more."
   },
   {
-    question: "How much wet food should I feed my dog calculator",
-    answer: "For wet food diets, adult dogs generally need 2.5% of their ideal body weight daily, adjusted for activity and neuter status. Because wet food has high moisture content, the gram amount is larger than kibble. Select \"Wet / Canned Food\" in our calculator, enter your dog's weight, and receive customized daily grams split across meals."
+    question: "Why is the wet food amount higher than kibble?",
+    answer: "Wet food contains more water, while dry food is more concentrated. That means the gram amount for wet food can look bigger even when the calories are similar."
   },
   {
-    question: "How much wet food to feed a dog calculator by age",
-    answer: "Age significantly impacts portion sizes. Puppies under 4 months need up to 9% of their body weight daily, while adults need 2.5% and seniors need 2.0%. Our calculator accounts for life stage automatically. Select the correct age bracket (Puppy, Adult, or Senior) and the portions adjust accordingly for wet food diets."
+    question: "Does age change the amount?",
+    answer: "Yes. Puppies and kittens usually need more food because they are growing. Adult pets usually need a steady amount. Senior pets may need less, depending on activity and body shape."
   },
   {
-    question: "How much food should I feed my dog calculator",
-    answer: "The right amount depends on your dog's weight, age, breed size, activity level, body condition, and whether they are spayed or neutered. Our calculator factors in all of these variables and outputs an exact daily portion in grams, ounces, and cups. It works for raw, kibble, wet, homemade, and mixed diets."
+    question: "How much food should I feed my dog?",
+    answer: "Start with your dog's weight, age, size, body shape, activity level, and whether they are spayed or neutered. The calculator turns those answers into a daily amount in grams, ounces, and estimated cups."
   },
   {
-    question: "How much dry food to feed a cat calculator",
-    answer: "Adult cats typically need about 3.0% of their ideal body weight in food daily. Select \"Cat\" in our pet switcher, choose \"Dry Kibble\" as the food type, and enter your cat's weight. The calculator uses a feline-specific density of 90g per cup (lower than dog kibble) to provide accurate cup and gram measurements."
+    question: "How much dry food should I feed my cat?",
+    answer: "Choose \"Cat,\" select dry kibble, and enter your cat's details. The calculator uses a cat dry-food cup estimate of 90g per cup, but weighing in grams is still more accurate."
   },
   {
-    question: "How much raw food to feed cat calculator",
-    answer: "For raw-fed cats, adult felines typically require 2% to 4% of their ideal body weight daily. Cats are obligate carnivores and thrive on raw diets rich in taurine and animal protein. Switch to \"Cat\" mode, select \"Raw (Complete)\" or \"Raw (80/10/10: DIY)\", and enter your cat's weight to get the precise daily portion."
+    question: "Can I use this for raw-fed cats?",
+    answer: "Yes. Choose \"Cat\" and select either ready-made raw or DIY raw 80/10/10. The calculator gives a daily amount and, for DIY raw, shows the meat, bone, liver, and other organ split."
   },
   {
-    question: "How much wet food to feed a cat calculator",
-    answer: "Wet cat food portions are calculated using standard 85g (3 oz) pouch sizes. Our calculator splits the daily amount into pouches so you know exactly how many to open per day. Select \"Cat\", choose \"Wet / Canned Food\", enter the weight, and receive precise gram-level portions with meal splits."
+    question: "How many wet food pouches should my cat eat?",
+    answer: "For cats, the calculator uses a standard 85g pouch as an estimate. Your food label may be different, so use the gram amount as the main number."
   },
   {
-    question: "How much dog food calculator",
-    answer: "Our dog food calculator determines the exact daily amount in grams, ounces, and cups for any diet type. Enter your dog's weight, select the food type (raw, kibble, wet, homemade, or mixed), specify the life stage and activity level, and the tool generates a complete daily feeding plan with per-meal breakdowns."
+    question: "Can I use this for different food types?",
+    answer: "Yes. It supports raw, dry kibble, wet food, home-cooked food, and a dry-plus-wet mix."
   },
   {
-    question: "How much raw food to feed dog calculator",
-    answer: "Raw-fed dogs generally need 2% to 3% of their ideal body weight per day for adults, and up to 9% for growing puppies. Select \"Raw (Complete)\" for pre-made raw or \"Raw (80/10/10: DIY)\" for homemade prey model raw. The calculator provides the total daily grams and breaks down the 80/10/10 ratio into muscle meat, bone, liver, and organ weights."
+    question: "Can I use this for raw-fed dogs?",
+    answer: "Yes. Choose ready-made raw for complete raw food, or DIY raw 80/10/10 if you want the calculator to split the amount into meat, bone, liver, and other organ weights."
   }
 ];
 
@@ -70,8 +70,8 @@ const schemaData = {
     <div class="max-w-[800px] mx-auto">
       <div class="text-center" style="margin-bottom: 40px;">
         <span class="font-mono text-[12px] uppercase tracking-wider text-body inline-block" style="margin-bottom: 12px;">Common Feeding Questions</span>
-        <h1 class="display-sm font-semibold text-ink" style="font-size: 28px; letter-spacing: -1px;">
-          Frequently Asked Questions About Pet Food Portions
+      <h1 class="display-sm font-semibold text-ink" style="font-size: 28px; letter-spacing: 0;">
+          Common questions about pet food portions
         </h1>
       </div>
 
